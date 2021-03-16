@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS makeup_db;
+
+CREATE DATABASE makeup_db;
