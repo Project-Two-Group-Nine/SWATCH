@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { User, Product, Comment, Rating, Wishlist, Clicked } = require('../models');
+const sequelize = require('../../config/connection');
+const { User, Product, Comment, Rating, Wishlist, Clicked } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-// get all products for homepage
+// get all products
 router.get('/', (req, res) => {
   console.log('======================');
   Product.findAll({
@@ -11,7 +12,7 @@ router.get('/', (req, res) => {
       'name',
       'api_id',
       'featured',
-      [sequelize.literal('(SELECT AVG(rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
     ],
     include: [
       {
@@ -48,22 +49,14 @@ router.get('/', (req, res) => {
       }
     ]
   })
-    .then(dbProductData => {
-      const products = dbProductData.map(product => product.get({ plain: true }));
-
-      res.render('homepage', {
-        products,
-        loggedIn: req.session.loggedIn
-      });
-    })
+    .then(dbProductData => res.json(dbProductData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-// get single product
-router.get('/products/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id
@@ -73,7 +66,7 @@ router.get('/products/:id', (req, res) => {
       'name',
       'api_id',
       'featured',
-      [sequelize.literal('(SELECT AVG(rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
     ],
     include: [
       {
@@ -115,13 +108,7 @@ router.get('/products/:id', (req, res) => {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
-
-      const product = dbProductData.get({ plain: true });
-
-      res.render('single-product', {
-        product,
-        loggedIn: req.session.loggedIn
-      });
+      res.json(dbProductData);
     })
     .catch(err => {
       console.log(err);
@@ -129,13 +116,71 @@ router.get('/products/:id', (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+router.post('/', withAuth, (req, res) => {
+  
+  Product.create({
+    name: req.body.name,
+    api_id: req.body.api_id
+  })
+    .then(dbProductData => res.json(dbProductData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
-  res.render('login');
+router.put('/rate', withAuth, (req, res) => {
+  // custom static method created in models/Product.js
+  Product.rate({ ...req.body, user_id: req.session.user_id }, { Rating, Product, User })
+    .then(updatedRatingData => res.json(updatedRatingData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.put('/:id', withAuth, (req, res) => {
+  Product.update(
+    {
+      title: req.body.title
+    },
+    {
+      where: {
+        id: req.params.id
+      }
+    }
+  )
+    .then(dbProductData => {
+      if (!dbProductData) {
+        res.status(404).json({ message: 'No product found with this id' });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.delete('/:id', withAuth, (req, res) => {
+  console.log('id', req.params.id);
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbProductData => {
+      if (!dbProductData) {
+        res.status(404).json({ message: 'No product found with this id' });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
