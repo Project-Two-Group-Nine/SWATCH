@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Product, Comment, Rating, Wishlist, Clicked } = require('../models');
+const { User, Product, Comment, Rating, Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get all products for dashboard
@@ -38,14 +38,6 @@ router.get('/', withAuth, (req, res) => {
         {
           model: Wishlist,
           attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
-        },
-        {
-          model: Clicked,
-          attributes: ['id', 'user_id', 'product_id','clicked' ,'date'],
           include: {
             model: User,
             attributes: ['id', 'name', 'email']
