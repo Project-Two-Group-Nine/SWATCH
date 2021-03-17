@@ -1,0 +1,28 @@
+<section>
+  <h2>Create New Comment</h2>
+
+  <form class="new-comment-form">
+    <div>
+      <label for="comment">Comment</label>
+      <input type="text" id="comment" name="comment" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+{{#if products.length}}
+<section>
+  <h2>Your Products</h2>
+  <ol>
+    {{#each products as |product|}}
+    <li>
+      {{> product-info product}}
+      </br>
+      <a href="/dashboard/edit/{{product.id}}" class="edit-link">Edit product</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-comment.js"></script>
