@@ -1,0 +1,21 @@
+{{> product-info product}}
+
+{{#if loggedIn}}
+<form class="comment-form">
+  <div>
+    <textarea name="comment"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+    <button type="button" class="rate-btn">rate</button>
+  </div>
+</form>
+{{/if}}
+
+{{> comments product.comments}}
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+<script src="/javascript/rate.js"></script>
+{{/if}}
