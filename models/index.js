@@ -4,7 +4,7 @@ const Product = require('./Product');
 const Rating = require('./Rating');
 const Comment = require('./Comment');
 const Wishlist = require('./Wishlist');
-const Clicked = require('./Clicked');
+
 
 
 //-----Comment----------
@@ -105,40 +105,8 @@ Product.hasMany(Wishlist, {
 
 //-------------
 
-//-------Clicked--------
-
-User.belongsToMany(Product, {
-  through: Clicked,
-  as: 'uclicked',
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
-Product.belongsToMany(User, {
-  through: Clicked,
-  as: 'pclicked',
-  foreignKey: 'product_id',
-  onDelete: 'SET NULL'
-});
-
-Clicked.belongsTo(User, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
-Clicked.belongsTo(Product, {
-  foreignKey: 'product_id',
-  onDelete: 'SET NULL'
-});
-
-User.hasMany(Clicked, {
-  foreignKey: 'user_id'
-});
-
-Product.hasMany(Clicked, {
-  foreignKey: 'product_id'
-});
 
 
 
-module.exports = { User, Product, Rating, Comment, Wishlist, Clicked };
+
+module.exports = { User, Product, Rating, Comment, Wishlist };
