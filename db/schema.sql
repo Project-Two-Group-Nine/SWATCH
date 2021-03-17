@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS makeup_db;
+DROP DATABASE IF EXISTS beauty_dream_db;
 
-CREATE DATABASE makeup_db;
+CREATE DATABASE beauty_dream_db;

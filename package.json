@@ -1,34 +1,26 @@
 {
-  "name": "makeup-review-website",
+  "name": "BeautyDream",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Project-Two-Group-Nine/makeup-review-website.git"
+    "seeds": "node seeds/index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Project-Two-Group-Nine/makeup-review-website/issues"
-  },
-  "homepage": "https://github.com/Project-Two-Group-Nine/makeup-review-website#readme",
   "dependencies": {
-    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
+    "handlebars": "^4.7.3",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.1"
   },
   "devDependencies": {
-    "jest": "^26.6.3"
+    "jest": "^25.1.0"
   }
 }
