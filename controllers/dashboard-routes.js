@@ -3,6 +3,37 @@ const sequelize = require('../config/connection');
 const { User, Product, Comment, Rating, Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
 
+
+
+// for interna data, append external data
+var product_append_ext =  async function(dbProductData) {
+  let result=[];
+ 
+  
+          for (var i = 0; i < dbProductData.length; i++) {
+            let queryUrl = 'http://localhost:3001/api/productsexternal/'+dbProductData[i].int_api_id
+             await fetch(queryUrl)
+                .then(async function(response){
+                  if (!response.ok) {
+                    return console.log('Error: products');
+                  }
+                  return response.json();
+                })
+                .then(async function(exttProduct) {
+                
+                  result.push(JSON.parse(JSON.stringify( { ...extProduct, ...dbProductData[i] }) ));
+                  
+              
+              })
+            } 
+        
+  return result; 
+};
+
+
+
+
+//////////////////////////////////////////////////////////////
 // get all products for dashboard
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
@@ -45,8 +76,8 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then(dbProductData => {
-      const products = dbProductData.map(product => product.get({ plain: true }));
+    .then( async function(dbProductData) {   
+      var products = await product_append_ext(dbProductData)
       res.render('dashboard', { products, loggedIn: true });
     })
     .catch(err => {
@@ -54,6 +85,16 @@ router.get('/', withAuth, (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
+
+
+////////////////////////////////
+
+
+
+
+
 
 router.get('/edit/:id', withAuth, (req, res) => {
   Comment.findByPk(req.params.id, {
@@ -77,8 +118,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
   })
     .then(dbCommentData => {
       if (dbCommentData) {
+      
         const comment = dbCommentData.get({ plain: true });
-        
         res.render('edit-comment', {
           comment,
           loggedIn: true

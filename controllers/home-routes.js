@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Product, Comment, Rating, Wishlist } = require('../models');
 
+
 const fetch = require("node-fetch");
 
 
@@ -9,7 +10,7 @@ const fetch = require("node-fetch");
 router.get('/', async function(req, res)  {
 
     console.log('======================');
-    let queryUrl = 'http://localhost:3001/api/productsexternal/'
+    let queryUrl = 'http://localhost:3001/api/products/api/productsexternal/'
      await fetch(queryUrl)
         .then(async function(response) {
           if (!response.ok) {
