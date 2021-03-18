@@ -1,5 +1,16 @@
-<article class="product">
-  <div class="title">
-    <a href="/products/{{id}}">{{name}}</a>
+<article class="card">
+  <div class="card-left">
+    {{!-- replace with product url --}}
+    <img class="card-image" src="https://picsum.photos/150/200" />
+    <button class="button-info button-round add-wishlist">Wishlist</button>
+  </div>
+  <div class="card-info">
+    <a href="/products/{{id}}"><h2 class="card-title"></h2>{{name}}</h2></a>
+    <h6>Rating: {{rating}}</h6>
+    {{!-- replace with product description --}}
+    <p>This is a product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis lacus
+      in nulla consequat suscipit. Fusce a
+      mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper orci, id ultricies ex.
+    </p>
   </div>
 </article>
