@@ -2,38 +2,88 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beauty Dream</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Website Title</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+
+    <!-- Normalize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">Beauty Dream</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
+    {{!-- Header --}}
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">Cool Website Title</a>
+            </div>
+            <ul class="nav-links">
+                {{#if loggedIn}}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/wishlist">Wishlist</a></li>
+                <li><button id="logout" class="button-primary button-round">logout</button></li>
+                {{else}}
+                <li><a href="/login">login</a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </nav>
+
+    {{!-- second nav (product categories) --}}
+    <nav class="nav-secondary">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><h6>Products</h6></li>
+                <li><a href="/">All</a></li>
+                <li><a href="/">Face</a></li>
+                <li><a href="/">Lips</a></li>
+                <li><a href="/">Eyes</a></li>
+            </ul>
+            <div class="nav-input">
+                <input type="text" name="search-product">
+                <button class="button-primary button-round nav-button" id="search-product" type="submit">Search</button>
+                <button id="open-filter" class="button-primary button-round nav-button">Sort/Filter</button>
+            </div>
+        </div>
+    </nav>
+    
     <main>
-      {{{ body }}}
+        {{{ body }}}
     </main>
+
+    <!-- Footer -->
     <footer>
-      Thanks for visiting!
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-6 col-lg-5">
+                    <div class="footer-text">
+                        <p class="h3">About Us</p>
+                        <p>About our team, yadda yadda</p>
+                    </div>
+                </div>
+                <div class="col col-sm-6 col-lg-5 col-lg-offset-1">
+                    <h4 class="footer-links-category">GitHub Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Link #1</a></li>
+                        <li><a href="#">Link #2</a></li>
+                        <li><a href="#">Link #3</a></li>
+                        <li><a href="#">Link #4</a></li>
+                        <li><a href="#">Link #5</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+        </div>
+    
     </footer>
-  </div>
-  
-  {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
-  {{/if}}
+
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
 </body>
 
 </html>
