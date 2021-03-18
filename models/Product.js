@@ -15,11 +15,10 @@ class Product extends Model {
           id: body.product_id
         },
         attributes: [
-          'id',
-          'name',
-          'api_id',
-          'featured',
-          'date',
+          'int_id',
+          'int_name',
+          'int_api_id',
+          'int_featured',
           [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
         ],
         include: [
@@ -40,25 +39,25 @@ class Product extends Model {
 // create fields/columns for Product model
 Product.init(
   {
-    id: {
+    int_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    int_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    api_id: {
+    int_api_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    featured: {
+    int_featured: {
       type: DataTypes.BOOLEAN,
       defaultValue: 0
     },
-    rating_avg: {
+    int_rating_avg: {
       type: DataTypes.INTEGER,
     }
 

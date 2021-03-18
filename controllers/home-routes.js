@@ -2,6 +2,72 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Product, Comment, Rating, Wishlist } = require('../models');
 
+const fetch = require("node-fetch");
+
+
+// for external data, append internal data
+var product_append_int =  async function() {
+ 
+  let result=[];
+  let emptyIntProduct ={
+    "int_id" : null,
+    "int_name" : null,
+    "int_api_id" : null,
+    "int_featured" : null}
+  let queryUrl = 'http://localhost:3001/api/products/'
+    fetch(queryUrl)
+        .then(response => {
+          if (!response.ok) {
+            return console.log('Error: ' + response.statusText);
+          }
+          return response.json();
+        })
+        .then(data => {
+
+          for (var i = 0; i < 8; i++) {
+            let queryUrl = 'http://localhost:3001/api/products/'+data[i].id
+            fetch(queryUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    return console.log('Error: ' + response.statusText);
+                  }
+                  return response.json();
+                })
+                .then(intProduct => {
+                if (!intProduct ){
+                  result.push({ ...data[i], ...emptyIntProduct});
+                  console.log(result);
+                }
+                else result.push({ ...data[i], ...intProduct});
+                })
+            }
+        });
+
+  return result;
+};
+
+
+
+// get all products-ext
+router.get('/', (req, res) => {
+    console.log('======================');
+    product_append_int()
+      .then(dbProductData => {
+        const products = dbProductData.map(product => product.get({ plain: true }));
+        res.render('homepage', {
+          products,
+          loggedIn: req.session.loggedIn
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+
+  });
+  
+ 
+/*
 // get all products for homepage
 router.get('/', (req, res) => {
   console.log('======================');
@@ -112,6 +178,7 @@ router.get('/products/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+*/
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {

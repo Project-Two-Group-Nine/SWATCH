@@ -22,7 +22,7 @@ Comment.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'product',
-        key: 'id'
+        key: 'int_id'
       }
     },
     comment: {

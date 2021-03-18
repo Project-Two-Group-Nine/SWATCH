@@ -21,7 +21,7 @@ Rating.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'product',
-        key: 'id'
+        key: 'int_id'
       }
     },
     rating: {

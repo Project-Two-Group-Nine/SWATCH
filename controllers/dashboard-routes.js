@@ -9,14 +9,14 @@ router.get('/', withAuth, (req, res) => {
   console.log('======================');
   Product.findAll({
       where: {
-        id: [sequelize.literal(`(SELECT product_id FROM comment WHERE comment.user_id = ${req.session.user_id}  union all SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'id']
+        int_id: [sequelize.literal(`(SELECT product_id FROM comment WHERE comment.user_id = ${req.session.user_id}  union all SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'id']
       },
       attributes: [
-        'id',
-        'name',
-        'api_id',
-        'featured',
-        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+        'int_id',
+        'int_name',
+        'int_api_id',
+        'int_featured',
+        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'rating_avg']
       ],
       include: [
         {
@@ -71,7 +71,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
       },
       {
         model: Product,
-        attributes: ['id', 'name', 'api_id','featured','rating_avg']
+        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
       }
     ]
   })
