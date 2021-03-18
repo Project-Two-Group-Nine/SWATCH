@@ -3,29 +3,6 @@ Mustard UI v0.0.5
 MIT License
 https://mustard-ui.com
 */
-
-/*
-
-
-
-
-
-
-
-
-DO NOT EDIT
-only the source .scss files can be edited
-
-
-
-
-
-
-
-
-
-*/
-
 * {
   margin: 0;
   padding: 0;
@@ -675,6 +652,14 @@ main {
     margin-left: 100%;
   }
 }
+.row .col-sm-order-1 {
+  order: -1;
+}
+@media (min-width: 768px) {
+  .row .col-sm-order-1 {
+    order: 0;
+  }
+}
 
 .section,
 section {
@@ -1056,11 +1041,11 @@ dl {
 }
 
 ul {
-  list-style: circle inside;
+  list-style: none inside;
 }
 
 ol {
-  list-style: decimal inside;
+  list-style: none inside;
 }
 
 body {
@@ -1140,10 +1125,43 @@ b {
   overflow: hidden;
   border-radius: 5px;
   box-shadow: 0 4px 12px rgba(224, 224, 224, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card-vertical {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-info {
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 20px;
+}
+
+.card-left {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-image {
+  height: 200px;
+  width: 150px;
+  margin-bottom: 20px;
 }
 
 .card-secondary {
   background: #ffffff;
+}
+
+.card-tertiary {
+  background: #9fa8da;
 }
 
 .card-title {
