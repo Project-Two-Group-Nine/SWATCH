@@ -51,14 +51,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
-      api_id: req.params.id
+      int_api_id: req.params.id
     },
     attributes: [
       'int_id',
       'int_name',
       'int_api_id',
       'int_featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'rating_avg']
     ],
     include: [
       {
@@ -103,8 +103,8 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
   
   Product.create({
-    name: req.body.name,
-    api_id: req.body.api_id
+    int_name: req.body.int_name,
+    int_api_id: req.body.int_api_id
   })
     .then(dbProductData => res.json(dbProductData))
     .catch(err => {
@@ -130,7 +130,7 @@ router.put('/:id', withAuth, (req, res) => {
     },
     {
       where: {
-        int_id: req.params.int_id
+        int_id: req.params.id
       }
     }
   )
