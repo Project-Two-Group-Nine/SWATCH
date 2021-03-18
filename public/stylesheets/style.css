@@ -652,6 +652,14 @@ main {
     margin-left: 100%;
   }
 }
+.row .col-sm-order-1 {
+  order: -1;
+}
+@media (min-width: 768px) {
+  .row .col-sm-order-1 {
+    order: 0;
+  }
+}
 
 .section,
 section {
@@ -1120,6 +1128,13 @@ b {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+.card-vertical {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-info {
