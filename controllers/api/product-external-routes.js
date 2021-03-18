@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
       });
   });
   
-  // get all product by extternal api-id
+  // get all product by external api-id
 router.get('/:id', (req, res) => {
     console.log('======================');
     product_ext_byid(req.params.id)
