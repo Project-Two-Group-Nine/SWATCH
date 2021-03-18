@@ -3,7 +3,7 @@ const seedProducts = require('./product-seeds');
 const seedComments = require('./comment-seeds');
 const seedRatings = require('./rating-seeds');
 const seedWishlists = require('./wishlist-seeds');
-const seedClicked = require('./clicked-seeds');
+
 
 const sequelize = require('../config/connection');
 
@@ -26,8 +26,6 @@ const seedAll = async () => {
   await seedWishlists();
   console.log('--------------');
 
-  await seedClicked();
-  console.log('--------------');
 
   process.exit(0);
 };
