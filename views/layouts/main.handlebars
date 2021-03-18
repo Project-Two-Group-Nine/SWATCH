@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beauty Dream</title>
+    <title>Cool Website Title</title>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
 
@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    {{!-- Header --}}
     <nav>
         <div class="nav-container">
             <div class="nav-logo">
@@ -32,16 +33,21 @@
         </div>
     </nav>
 
+    {{!-- second nav (product categories) --}}
     <nav class="nav-secondary">
         <div class="nav-container">
             <ul class="nav-links">
+                <li><h6>Products</h6></li>
                 <li><a href="/">All</a></li>
                 <li><a href="/">Face</a></li>
                 <li><a href="/">Lips</a></li>
                 <li><a href="/">Eyes</a></li>
-                <li class="nav-input"><input type="text"><button class="button-primary button-round" id="search-product">Search</button></li>
-                <li><button id="open-filter" class="button-primary button-round">Sort/Filter</button></li>
             </ul>
+            <div class="nav-input">
+                <input type="text" name="search-product">
+                <button class="button-primary button-round nav-button" id="search-product" type="submit">Search</button>
+                <button id="open-filter" class="button-primary button-round nav-button">Sort/Filter</button>
+            </div>
         </div>
     </nav>
     
@@ -65,8 +71,8 @@
                         <li><a href="#">Link #1</a></li>
                         <li><a href="#">Link #2</a></li>
                         <li><a href="#">Link #3</a></li>
-                        <li><a href="#">Link #3</a></li>
-                        <li><a href="#">Link #3</a></li>
+                        <li><a href="#">Link #4</a></li>
+                        <li><a href="#">Link #5</a></li>
                     </ul>
                 </div>
     
