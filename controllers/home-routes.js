@@ -10,7 +10,7 @@ const fetch = require("node-fetch");
 router.get('/', async function(req, res)  {
 
     console.log('======================');
-    let queryUrl = 'http://localhost:3001/api/products/api/productsexternal/'
+    let queryUrl = 'http://localhost:3001/api/productsexternal/'
      await fetch(queryUrl)
         .then(async function(response) {
           if (!response.ok) {
