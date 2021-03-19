@@ -38,7 +38,7 @@ var product_append_ext =  async function(dbProductData) {
             }
       } 
 
-  console.log(result);
+ 
   return result; 
 };
 
