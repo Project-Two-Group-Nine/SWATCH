@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
   console.log('======================');
   Product.findAll({
     attributes: [
-      'id',
-      'name',
-      'api_id',
-      'featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+      'int_id',
+      'int_name',
+      'int_api_id',
+      'int_featured',
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'int_rating_avg']
     ],
     include: [
       {
@@ -51,14 +51,14 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
-      id: req.params.id
+      int_api_id: req.params.id
     },
     attributes: [
-      'id',
-      'name',
-      'api_id',
-      'featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+      'int_id',
+      'int_name',
+      'int_api_id',
+      'int_featured',
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'int_rating_avg']
     ],
     include: [
       {
@@ -103,8 +103,8 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
   
   Product.create({
-    name: req.body.name,
-    api_id: req.body.api_id
+    int_name: req.body.int_name,
+    int_api_id: req.body.int_api_id
   })
     .then(dbProductData => res.json(dbProductData))
     .catch(err => {
@@ -126,11 +126,11 @@ router.put('/rate', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
   Product.update(
     {
-      title: req.body.title
+      int_name: req.body.int_name
     },
     {
       where: {
-        id: req.params.id
+        int_id: req.params.id
       }
     }
   )
@@ -151,7 +151,7 @@ router.delete('/:id', withAuth, (req, res) => {
   console.log('id', req.params.id);
   Product.destroy({
     where: {
-      id: req.params.id
+      int_id: req.params.id
     }
   })
     .then(dbProductData => {

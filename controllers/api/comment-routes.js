@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
       },
       {
         model: Product,
-        attributes: ['id', 'name', 'api_id','featured','rating_avg']
+        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
       }
     ]
   })
@@ -49,7 +49,7 @@ router.get('/:id', (req, res) => {
       },
       {
         model: Product,
-        attributes: ['id', 'name', 'api_id','featured','rating_avg']
+        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
       }
     ]
   })

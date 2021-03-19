@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
         include: {
           model: Product,
-          attributes: ['id', 'name', 'api_id', 'featured', 'rating_avg']
+          attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
         }
       },
       {
@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
         include: {
           model: Product,
-          attributes: ['id', 'name', 'api_id', 'featured', 'rating_avg']
+          attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
         }
       },
       {
@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'user_id', 'product_id','wish_list,', 'date'],
         include: {
           model: Product,
-          attributes: ['id', 'name', 'api_id', 'featured', 'rating_avg']
+          attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
         }
       }
     ]
@@ -102,7 +102,7 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
+      req.session.username = dbUserData.name;
       req.session.loggedIn = true;
   
       res.json({ user: dbUserData, message: 'You are now logged in!' });

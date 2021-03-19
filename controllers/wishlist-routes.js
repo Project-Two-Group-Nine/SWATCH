@@ -38,7 +38,7 @@ var product_append_ext =  async function(dbProductData) {
             }
       } 
 
- 
+  
   return result; 
 };
 
@@ -46,13 +46,13 @@ var product_append_ext =  async function(dbProductData) {
 
 
 //////////////////////////////////////////////////////////////
-// get all products for dashboard
+// get all products for wishlist
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
   Product.findAll({
       where: {
-        int_id : {[Op.in]: [sequelize.literal(`(SELECT product_id FROM comment WHERE comment.user_id = ${req.session.user_id}  union SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'int_id']}
+        int_id : {[Op.in]: [sequelize.literal(`(SELECT unisque(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
       },
       attributes: [
         'int_id',
@@ -90,7 +90,7 @@ router.get('/', withAuth, (req, res) => {
     })
     .then( async function(dbProductData) {   
       var products = await product_append_ext(dbProductData)
-      res.render('dashboard', { products, loggedIn: true });
+      res.render('wishlist', { products, loggedIn: true });
     })
     .catch(err => {
       console.log(err);
@@ -105,12 +105,11 @@ router.get('/', withAuth, (req, res) => {
 
 
 router.get('/edit/:id', withAuth, (req, res) => {
-  Comment.findByPk(req.params.id, {
+  Wishlist.findByPk(req.params.id, {
     attributes: [
       'id',
       'user_id',
-      'product_id',
-      'comment',
+      'wishlist',
       'date'
     ],
     include: [
@@ -124,12 +123,12 @@ router.get('/edit/:id', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbCommentData => {
-      if (dbCommentData) {
+    .then(dbWishlistData => {
+      if (dbWishlistData) {
       
-        const comment = dbCommentData.get({ plain: true });
-        res.render('edit-comment', {
-          comment,
+        const wishlist = dbCommentData.get({ plain: true });
+        res.render('edit-wishlist', {
+          wishlist,
           loggedIn: true
         });
       } else {
@@ -143,44 +142,6 @@ router.get('/edit/:id', withAuth, (req, res) => {
 
 
 
-
-router.get('/edit/:id', withAuth, (req, res) => {
-  Rating.findByPk(req.params.id, {
-    attributes: [
-      'id',
-      'user_id',
-      'product_id',
-      'rating',
-      'rating_avg',
-      'date'
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['id', 'name', 'email']
-      },
-      {
-        model: Product,
-        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
-      }
-    ]
-  })
-    .then(dbRatingData => {
-      if (dbRatingData) {
-      
-        const rating = dbRatingData.get({ plain: true });
-        res.render('edit-rating', {
-          rating,
-          loggedIn: true
-        });
-      } else {
-        res.status(404).end();
-      }
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
 
 
 module.exports = router;

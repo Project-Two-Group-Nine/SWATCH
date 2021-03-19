@@ -22,7 +22,7 @@ Wishlist.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'product',
-        key: 'id'
+        key: 'int_id'
       }
     },
     wish_list: {
