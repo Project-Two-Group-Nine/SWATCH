@@ -1,13 +1,64 @@
 <section>
-  <h2>Create New Comment</h2>
+  <h1>Dashboard</h1>
+  <h2>Review Product</h2>
 
   <form class="new-comment-form">
     <div>
-      <label for="comment">Comment</label>
+      <label for="comment">Review</label>
       <input type="text" id="comment" name="comment" />
     </div>
     <button type="submit" class="btn">Create</button>
   </form>
+  <div>
+    <select name="category" id="category">
+       <option value="category">Category</option>
+       <option value="concealer">Concealer</option>
+       <option value="foundation">Foundation</option>
+       <option value="makeupBrushes">Makeup Brushes</option>
+    </select>
+   <select name="brand" id="brand">
+       <option value="brand">Brand</option>
+       <option value="tarte">Tarte</option>
+       <option value="sephoraCollection">Sephora Collection</option>
+       <option value="fenty">Fenty Beauty</option>
+       <option value="buxom">Buxom</option>
+    </select>
+     <select name="product" id="product">
+       <option value="product">Product</option>
+       <option value="tarteConcealer">Amazonian Clay Waterproof 12-Hour Concealer</option>
+       <option value="tarteBrush">SEA Aquaflash Foundation Brush</option>
+    </select>
+  </div>
+</section>
+<section>
+  <h2>Your Review's</h2>
+  <div class="yourReviews">
+   <h3>Product Name</h3>
+   <img class="card-image" src="https://www.sephora.com/productimages/sku/s1659424-main-zoom.jpg?imwidth=612">
+     <h4>Rating: *****</h4>
+     <h4>Your review</h4>
+     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum perferendis incidunt non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta, quidem accusamus sint exercitationem ullam.</p>
+   </div>
+   <div class="yourReviews">
+   <h3>Product Name</h3>
+   <img class="card-image" src="https://www.sephora.com/productimages/sku/s1626969-main-zoom.jpg?imwidth=612">
+     <h4>Rating: ****</h4>
+     <h4>Your review</h4>
+     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum perferendis incidunt non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta, quidem accusamus sint exercitationem ullam.</p>
+   </div>
+</section>
+<section>
+  <h2>Your Comment's</h2>
+  <div>
+  <h4>Product Name</h4>
+  <p>comment Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod, pariatur. Doloribus voluptate aspernatur doloremque sequi necessitatibus. Dolorem sequi quae aspernatur ipsa nulla et architecto error, natus, recusandae quasi pariatur quam!</p>
+  <h5>05/07/2020</h5>
+  </div>
+  <div>
+  <h4>Product Name</h4>
+  <p>comment Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod, pariatur. Doloribus voluptate aspernatur doloremque sequi necessitatibus. Dolorem sequi quae aspernatur ipsa nulla et architecto error, natus, recusandae quasi pariatur quam!</p>
+  <h5>02/07/2021</h5>
+  </div>
 </section>
 {{#if products.length}}
 <section>
