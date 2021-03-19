@@ -4,15 +4,7 @@ const { User, Product, Comment, Rating, Wishlist } = require('../models');
 
 const fetch = require("node-fetch");
 
-function merge(obj1, obj2) {
-  var hasOwn = {}.hasOwnProperty;
-  for (var key in obj2) {
-      if (hasOwn.call(obj2, key)) {
-          obj1[key] = obj2[key];
-      }
-  }
-  return obj1;
-}
+
 
 // for external data, append internal data
 var product_append_int =  async function(id) {

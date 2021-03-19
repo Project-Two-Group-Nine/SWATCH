@@ -11,9 +11,9 @@
 
                 {{#each products as |product|}}
 
-                    
+                    {{#unless product.int_featured}}
                         {{> product-info product}}
-                
+                    {{/unless}}
 
                 {{/each}}
 
@@ -23,7 +23,7 @@
 
                 {{#each products as |product|}}
                 
-                    {{#if product.featured}}
+                    {{#if product.int_featured}}
                         {{> product-info product}}
                     {{/if}}
                 
