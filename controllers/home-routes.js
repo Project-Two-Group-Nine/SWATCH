@@ -56,9 +56,9 @@ var product_append_int =  async function() {
 // get external data append internal data
 router.get('/', async function(req, res)  {
     console.log('======================');
-    var products = await product_append_int()
+    //var products = await product_append_int()
         res.render('homepage', {
-          products,
+          //products
           loggedIn: req.session.loggedIn
         });
   });
