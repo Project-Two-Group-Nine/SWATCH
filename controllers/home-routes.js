@@ -1,95 +1,56 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Product, Comment, Rating, Wishlist } = require('../models');
-
+const { User, Product,  Rating, Wishlist } = require('../models');
+const withAuth = require('../utils/auth');
 
 const fetch = require("node-fetch");
 
 
 
-
-// for external data, append internal data
-var product_append_int =  async function() {
-  let result=[];
-  let emptyIntProduct ={
-    "int_id" : 0,
-    "int_name" : 0,
-    "int_api_id" : 0,
-    "int_featured" : 0}
-  let queryUrl = 'http://localhost:3001/api/productsexternal/'
-     await fetch(queryUrl)
-        .then(async function(response) {
-          if (!response.ok) {
-            return console.log('Error: productsexternal');
+// get all products for dashboard
+router.get('/', withAuth, (req, res) => {
+  console.log(req.session);
+  console.log('======================');
+  Product.findAll({
+      attributes: [
+        'id',
+        'name',
+        'api_id',
+        'featured',
+        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
+      ],
+      include: [
+    
+        {
+          model: Rating,
+          attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
           }
-          return await response.json();
-        })
-        .then(async function(data) {
-          for (var i = 0; i < data.length; i++) {
-            let queryUrl = 'http://localhost:3001/api/products/'+data[i].id
-             await fetch(queryUrl)
-                .then(async function(response){
-                  if (!response.ok) {
-                    return console.log('Error: products');
-                  }
-                  return response.json();
-                })
-                .then(async function(intProduct) {
-                if (!intProduct ){
-                  result.push(JSON.parse(JSON.stringify( { ...data[i], ...emptyIntProduct } )));
-                }
-                else {
-                  result.push(JSON.parse(JSON.stringify( { ...data[i], ...intProduct }) ));
-                  
-                }
-              })
-            } 
-        })
-        .catch(function(error) {
-          console.log("Unable to connect" + error);
-       });  
-  return result; 
-};
-
-
-
-// get external data append internal data
-router.get('/', async function(req, res)  {
-    console.log('======================');
-    var products = await product_append_int()
-        res.render('homepage', {
-          products,
-          loggedIn: req.session.loggedIn
-        });
-  });
-  
-
-/*
-// get all products-ext
-router.get('/', async function(req, res)  {
-
-    console.log('======================');
-    let queryUrl = 'http://localhost:3001/api/productsexternal/'
-     await fetch(queryUrl)
-        .then(async function(response) {
-          if (!response.ok) {
-            return console.log('Error: productsexternal');
+        },
+        {
+          model: Wishlist,
+          attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
           }
-          return await response.json();
-        })
-        .then(async function(products) {   
-          res.render('homepage', {
-            products,
-            loggedIn: req.session.loggedIn
-          });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-        });
-  });*/
-  
- 
+        }
+      ]
+    })
+    .then( async function(dbProductData) {   
+      var products = await product_append_ext(dbProductData)
+      res.render('dashboard', { products, loggedIn: true });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+  ////////login//////
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {

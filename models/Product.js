@@ -15,11 +15,11 @@ class Product extends Model {
           id: body.product_id
         },
         attributes: [
-          'int_id',
-          'int_name',
-          'int_api_id',
-          'int_featured',
-          [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+          'id',
+          'name',
+          'api_id',
+          'featured',
+          [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
         ],
         include: [
           {
@@ -39,21 +39,48 @@ class Product extends Model {
 // create fields/columns for Product model
 Product.init(
   {
-    int_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    int_name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    int_api_id: {
+    api_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    int_featured: {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.INTEGER,
+    },
+    image_link: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING(2000),
+      allowNull: false
+    },
+    rating: {
+      type: DataTypes.STRING
+    },
+    category: {
+      type: DataTypes.STRING
+    },
+    product_type: {
+      type: DataTypes.STRING
+    },
+    api_featured_image: {
+      type: DataTypes.STRING
+    },
+    featured: {
       type: DataTypes.BOOLEAN,
       defaultValue: 0
     },
