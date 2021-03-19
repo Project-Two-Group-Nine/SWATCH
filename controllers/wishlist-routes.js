@@ -50,11 +50,12 @@ router.get('/', withAuth, (req, res) => {
       ]
     })
     .then(dbProductData => {
-      if (!dbProductData) {
-        res.status(404).json({ message: 'No product found !' });
-        return;
-      }
-      res.json(dbProductData);
+      const products = dbProductData.map(product => product.get({ plain: true }));
+
+      res.render('wishlist', {
+        products,
+        loggedIn: req.session.loggedIn
+      });
     })
     .catch(err => {
       console.log(err);

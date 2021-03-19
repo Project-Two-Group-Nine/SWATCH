@@ -13,7 +13,7 @@ router.get('/', withAuth, (req, res) => {
   console.log('======================');
   Product.findAll({
       where: {
-        int_id :  [sequelize.literal(`(SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'id']
+        id :  [sequelize.literal(`(SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'id']
       },
       attributes: [
         'id',
@@ -41,9 +41,13 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then( async function(dbProductData) {   
-      var products = await product_append_ext(dbProductData)
-      res.render('dashboard', { products, loggedIn: true });
+    .then(dbProductData => {
+      const products = dbProductData.map(product => product.get({ plain: true }));
+
+      res.render('dashboard', {
+        products,
+        loggedIn: req.session.loggedIn
+      });
     })
     .catch(err => {
       console.log(err);

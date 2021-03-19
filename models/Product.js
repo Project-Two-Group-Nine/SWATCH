@@ -55,10 +55,9 @@ Product.init(
     },
     brand: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     image_link: {
       type: DataTypes.STRING,
