@@ -7,6 +7,8 @@ var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
+//////////////////////////////////////////////////////////////
+
 // get all products for wishlist
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
@@ -43,13 +45,10 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then(dbProductData => {
-      const products = dbProductData.map(product => product.get({ plain: true }));
+    .then( dbWishlistData => {   
+      const products = dbWishlistData.map(item => item.get({ plain: true }));
+      res.render('wishlist', { products, loggedIn: req.session.loggedIn });
 
-      res.render('wishlist', {
-        products,
-        loggedIn: req.session.loggedIn
-      });
     })
     .catch(err => {
       console.log(err);

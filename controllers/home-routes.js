@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
+
 const { User, Product,  Rating, Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -57,9 +58,10 @@ router.get('/', withAuth, (req, res) => {
 
   ////////login//////
 
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 

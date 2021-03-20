@@ -67,13 +67,14 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', withAuth, (req, res) => {
+router.post('/',  (req, res) => {
   
   Wishlist.create({
-    user_id: req.session.user_id,
+    // user_id: req.session.user_id,
+    user_id: req.body.user_id,
     product_id: req.body.product_id,
-    wish_list: 1,
-    date: req.body.date
+    wish_list: req.body.wish_list,
+    // date: new Date() <-- don't need as sequelize auto creates
   })
     .then(dbWishlistData => res.json(dbWishlistData))
     .catch(err => {

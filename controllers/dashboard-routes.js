@@ -2,7 +2,6 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Product,  Rating, Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
-const fetch = require("node-fetch");
 var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
