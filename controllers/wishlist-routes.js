@@ -13,7 +13,7 @@ router.get('/', withAuth, (req, res) => {
   console.log('======================');
   Product.findAll({
       where: {
-        id : {[Op.in]: [sequelize.literal(`(SELECT unisque(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
+        id : {[Op.in]: [sequelize.literal(`(SELECT distinct(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id} group by product_id)`), 'id']}
       },
       attributes: [
         'id',
@@ -25,14 +25,6 @@ router.get('/', withAuth, (req, res) => {
         [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
       ],
       include: [
-        {
-          model: Comment,
-          attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
-        },
         {
           model: Rating,
           attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
@@ -76,7 +68,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     attributes: [
       'id',
       'user_id',
-      'wishlist',
+      'wish_list',
       'date'
     ],
     include: [
