@@ -1,5 +1,10 @@
 async function newWishHandler(event) {
     
+
+  const id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+  
   if (event.target.textContent=="Wishlist") {
     event.preventDefault();
     
@@ -20,41 +25,12 @@ async function newWishHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.reload();
     } else {
       alert(response.statusText);
     }
 }
 
-if (event.target.textContent=="Review") {
-  event.preventDefault();
-  
-  const product_id = event.target.id;
-  const rating = 1;
-  const rating_commentary ="ok";
-  const date = Date.now();
-
-  console.log( event.target.id)
-
-  const response = await fetch(`/api/ratings`, {
-    method: 'POST',
-    body: JSON.stringify({
-      product_id,
-      rating,
-      rating_commentary,
-      date
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-
-  if (response.ok) {
-    document.location.replace('/');
-  } else {
-    alert(response.statusText);
-  }
-}
 
 }
 
