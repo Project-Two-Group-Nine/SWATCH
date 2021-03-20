@@ -6,7 +6,7 @@ const router = require('express').Router();
 var product_ext =  async function() {
 
   // format the api url
-  var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.json";
+  var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
   var data = null;
      // make a request to the url
      await fetch(apiUrl)
