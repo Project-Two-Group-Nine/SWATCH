@@ -1,5 +1,56 @@
+const fetch = require("node-fetch");
 const { Product } = require('../models');
 
+
+// makeup api
+var product_ext =  async function() {
+  // format the api url
+  var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.json";
+  var data = [];
+     // make a request to the url
+     await fetch(apiUrl)
+     .then(async function(response) {
+       // request was successful
+       if (response.ok) {
+         await response.json().then(async function(extProductData) {
+           data =  await extProductData;
+         });
+       } else {
+        console.log("Error: " + response.statusText);
+       }
+     })
+     .catch(function(error) {
+        console.log("Unable to connect" + error);
+     });
+return await data;
+};
+
+// makeup api
+var product_ext_meaningful_fields =  async function() {
+  var data= [];
+  var dataOut = [];
+  data = await product_ext();
+
+  for (var i = 0; i < data.length; i++) {
+      dataOut.push(JSON.parse(JSON.stringify( { api_id: data[i].id, 
+        name: data[i].name, 
+        brand: data[i].brand, 
+        price: data[i].price, 
+        image_link: data[i].image_link, 
+        description: data[i].description, 
+        rating: data[i].rating, 
+        cateory: data[i].category, 
+        product_type: data[i].product_type, 
+        api_featured_image: data[i].api_featured_image, 
+        featured: 0,
+        int_rating_avg: 0 })));  
+    }
+    return dataOut;
+  };
+
+
+
+/*
 const productdata = [
   {
     api_id: 495,
@@ -43,9 +94,16 @@ const productdata = [
     featured: 0,
     int_rating_avg: 4
   }
-];
+];*/
 
-const seedProducts = () => Product.bulkCreate(productdata);
+var seedProducts =  async function() {
+  // get all products-ext
+  productdata = await product_ext_meaningful_fields();
+  
+  await Product.bulkCreate(productdata);
+}
+//const seedProducts = () => Product.bulkCreate(productdata);
+
 
 module.exports = seedProducts;
 

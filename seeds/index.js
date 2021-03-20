@@ -16,11 +16,11 @@ const seedAll = async () => {
   await seedProducts();
   console.log('--------------');
 
-  await seedRatings();
+  /*await seedRatings();
   console.log('--------------');
 
   await seedWishlists();
-  console.log('--------------');
+  console.log('--------------');*/
 
 
   process.exit(0);

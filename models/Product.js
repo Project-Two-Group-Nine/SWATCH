@@ -60,12 +60,11 @@ Product.init(
       type: DataTypes.STRING,
     },
     image_link: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING(2000),
-      allowNull: false
+      type: DataTypes.STRING(9000)
     },
     rating: {
       type: DataTypes.STRING
