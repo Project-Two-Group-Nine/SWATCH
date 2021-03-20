@@ -7,7 +7,7 @@ var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-
+/*
 // for interna data, append external data
 var product_append_ext =  async function(dbProductData) {
   let result=[];
@@ -41,7 +41,7 @@ var product_append_ext =  async function(dbProductData) {
   
   return result; 
 };
-
+*/
 
 
 
@@ -52,7 +52,7 @@ router.get('/', withAuth, (req, res) => {
   console.log('======================');
   Product.findAll({
       where: {
-        int_id : {[Op.in]: [sequelize.literal(`(SELECT unisque(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
+        int_id : {[Op.in]: [sequelize.literal(`(SELECT unique(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
       },
       attributes: [
         'int_id',
@@ -88,8 +88,7 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then( async function(dbProductData) {   
-      var products = await product_append_ext(dbProductData)
+    .then( products => {   
       res.render('wishlist', { products, loggedIn: true });
     })
     .catch(err => {
