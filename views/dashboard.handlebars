@@ -30,12 +30,21 @@
       <form class="create-review-form col col-sm-6">
         <div>
 
-          <label for="rating">Rate </label>
+          {{!-- <label for="rating">Rate </label>
           <input type="radio" id="rating-1" name="rating" />
           <input type="radio" id="rating-2" name="rating" />
           <input type="radio" id="rating-3" name="rating" />
           <input type="radio" id="rating-4" name="rating" />
-          <input type="radio" id="rating-5" name="rating" />
+          <input type="radio" id="rating-5" name="rating" /> --}}
+
+          <label for="rating">Rate </label>
+          <select id="rating" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
 
         </div>
 
@@ -108,4 +117,7 @@
 </section>
 {{/if}}
 
-<script src="/javascript/add-comment.js"></script>
+{{#if loggedIn}}
+<script src="/javascript/rate.js"></script>
+<script src="javascript/show-modal.js"></script>
+{{/if}}
