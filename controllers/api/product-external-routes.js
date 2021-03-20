@@ -26,16 +26,6 @@ var product_ext =  async function() {
 return data;
 };
 
-// makeup api
-var product_ext_byid =  async function(id) {
-    var data = [];
-    data = await product_ext();
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].id == id ){
-            return data[i];
-        }
-    }
-  };
 
 
 // get all products-ext
@@ -49,15 +39,6 @@ router.get('/', (req, res) => {
       });
   });
   
-  // get all product by external api-id
-router.get('/:id', (req, res) => {
-    console.log('======================');
-    product_ext_byid(req.params.id)
-      .then(dbProductData => res.json(dbProductData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+
 
   module.exports = router;

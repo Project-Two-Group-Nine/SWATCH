@@ -19,6 +19,8 @@ router.get('/', withAuth, (req, res) => {
         'id',
         'api_id',
         'name',
+        'image_link',
+        'description',
         'featured',
         [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
       ],
