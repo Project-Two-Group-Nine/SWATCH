@@ -1,83 +1,111 @@
-<section>
-  <h1>Dashboard</h1>
-  <h2>Review Product</h2>
+<section class="section-secondary">
+  <div class="container">
 
-  <form class="new-comment-form">
-    <div>
-      <label for="comment">Review</label>
-      <input type="text" id="comment" name="comment" />
+    <h3>Dashboard</h3>
+    <h6>Review Product</h6>
+
+    <div class="row">
+
+      <div class="col col-sm-6">
+        <select name="category" id="category">
+          <option value="category">Category</option>
+          <option value="concealer">Concealer</option>
+          <option value="foundation">Foundation</option>
+          <option value="makeupBrushes">Makeup Brushes</option>
+        </select>
+        <select name="brand" id="brand">
+          <option value="brand">Brand</option>
+          <option value="tarte">Tarte</option>
+          <option value="sephoraCollection">Sephora Collection</option>
+          <option value="fenty">Fenty Beauty</option>
+          <option value="buxom">Buxom</option>
+        </select>
+        <select name="product" id="product">
+          <option value="product">Product</option>
+          <option value="tarteConcealer">Amazonian Clay Waterproof 12-Hour Concealer</option>
+          <option value="tarteBrush">SEA Aquaflash Foundation Brush</option>
+        </select>
+      </div>
+
+      <form class="create-review-form col col-sm-6">
+        <div>
+
+          <label for="rating">Rate </label>
+          <input type="radio" id="rating-1" name="rating" />
+          <input type="radio" id="rating-2" name="rating" />
+          <input type="radio" id="rating-3" name="rating" />
+          <input type="radio" id="rating-4" name="rating" />
+          <input type="radio" id="rating-5" name="rating" />
+
+        </div>
+
+        <div>
+
+          <label for="review">Review</label>
+          <input type="text" id="review" name="review" />
+          <button type="submit" class="button-info button-round form-button">Create</button>
+
+        </div>
+      </form>
+
     </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-  <div>
-    <select name="category" id="category">
-       <option value="category">Category</option>
-       <option value="concealer">Concealer</option>
-       <option value="foundation">Foundation</option>
-       <option value="makeupBrushes">Makeup Brushes</option>
-    </select>
-   <select name="brand" id="brand">
-       <option value="brand">Brand</option>
-       <option value="tarte">Tarte</option>
-       <option value="sephoraCollection">Sephora Collection</option>
-       <option value="fenty">Fenty Beauty</option>
-       <option value="buxom">Buxom</option>
-    </select>
-     <select name="product" id="product">
-       <option value="product">Product</option>
-       <option value="tarteConcealer">Amazonian Clay Waterproof 12-Hour Concealer</option>
-       <option value="tarteBrush">SEA Aquaflash Foundation Brush</option>
-    </select>
-  </div>
+
 </section>
+
 <section>
-  <h2>Your Reviews</h2>
-  <div class="yourReviews">
-   <h3>Product Name</h3>
-   <img class="card-image" src="https://www.sephora.com/productimages/sku/s1659424-main-zoom.jpg?imwidth=612">
-     <h4>Rating: *****</h4>
-     <h4>Your review</h4>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum perferendis incidunt non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta, quidem accusamus sint exercitationem ullam.</p>
-   </div>
-   <div class="yourReviews">
-   <h3>Product Name</h3>
-   <img class="card-image" src="https://www.sephora.com/productimages/sku/s1626969-main-zoom.jpg?imwidth=612">
-     <h4>Rating: ****</h4>
-     <h4>Your review</h4>
-     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum perferendis incidunt non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta, quidem accusamus sint exercitationem ullam.</p>
-   </div>
+  <h3>Your Reviews</h3>
+
+  <article class="card">
+    <div class="card-left">
+      {{!-- replace with product img url --}}
+      <img class="card-image" src={{image_link}} />
+    </div>
+
+    <div class="card-info">
+
+      <h4 class="card-title">Product Name</h4>
+      <h6>Rating: *****</h4>
+        <h6>Your review</h4>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum
+            perferendis incidunt
+            non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta,
+            quidem accusamus
+            sint exercitationem ullam.</p>
+
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-left">
+      {{!-- replace with product img url --}}
+      <img class="card-image" src={{image_link}} />
+    </div>
+
+    <div class="card-info">
+
+      <h4 class="card-title">Product Name</h4>
+      <h6>Rating: *****</h4>
+        <h6>Your review</h4>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum
+            perferendis incidunt
+            non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta,
+            quidem accusamus
+            sint exercitationem ullam.</p>
+
+    </div>
+  </article>
+
 </section>
-<section>
-  <h2>Your Comment's</h2>
-  <div>
-  <h4>Product Name</h4>
-  <p>comment Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod, pariatur. Doloribus voluptate aspernatur doloremque sequi necessitatibus. Dolorem sequi quae aspernatur ipsa nulla et architecto error, natus, recusandae quasi pariatur quam!</p>
-  <h5>05/07/2020</h5>
-  </div>
-  <div>
-  <h4>Product Name</h4>
-  <p>comment Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod, pariatur. Doloribus voluptate aspernatur doloremque sequi necessitatibus. Dolorem sequi quae aspernatur ipsa nulla et architecto error, natus, recusandae quasi pariatur quam!</p>
-  <h5>02/07/2021</h5>
-  </div>
-</section>
+
+
 {{#if products.length}}
 <section>
-  <h2>Your Products</h2>
-  <ol>
+  <h3>Your Reviews</h3>
+
     {{#each products as |product|}}
-    
-    <li>
       {{> product-info product}}
-      </br>
-      <a href="/dashboard/edit/{{product.id}}" class="edit-link">Edit product</a>
-    </li>
-      {{#each product.comments as |comment|}}
-      <li>
-        {{> comments comment}}
-      </li>
-      {{/each}}
     {{/each}}
-  </ol>
+
 </section>
 {{/if}}
 
