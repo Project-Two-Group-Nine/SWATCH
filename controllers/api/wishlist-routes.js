@@ -72,8 +72,8 @@ router.post('/', withAuth, (req, res) => {
   Wishlist.create({
     user_id: req.session.user_id,
     product_id: req.body.product_id,
-    wish_list: req.body.wish_list,
-    date: today.getDate()
+    wish_list: 1,
+    date: req.body.date
   })
     .then(dbWishlistData => res.json(dbWishlistData))
     .catch(err => {
