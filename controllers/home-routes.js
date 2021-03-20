@@ -25,7 +25,7 @@ router.get('/', withAuth, (req, res) => {
     
         {
           model: Rating,
-          attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
+          attributes: ['id', 'user_id', 'product_id', 'rating', 'date'],
           include: {
             model: User,
             attributes: ['id', 'name', 'email']
