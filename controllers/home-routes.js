@@ -7,7 +7,7 @@ const fetch = require("node-fetch");
 
 
 
-
+/*
 // for external data, append internal data
 var product_append_int =  async function() {
   let result=[];
@@ -50,17 +50,52 @@ var product_append_int =  async function() {
        });  
   return result; 
 };
+*/
 
 
-
-// get external data append internal data
+// GET products from DB
 router.get('/', async function(req, res)  {
     console.log('======================');
-    var products = await product_append_int()
+    Product.findAll({
+      attributes: [
+        'int_id',
+        'int_name',
+        'int_api_id',
+        'int_featured',
+        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'int_rating_avg']
+      ],
+      include: [
+        {
+          model: Comment,
+          attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
+          }
+        },
+        {
+          model: Rating,
+          attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
+          }
+        },
+        {
+          model: Wishlist,
+          attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
+          }
+        }
+      ]
+    }).then(dbProductData => {
+        const products = dbProductData.map(post => post.get({ plain: true }));
         res.render('homepage', {
-          products,
-          loggedIn: req.session.loggedIn
+          products
         });
+      });
   });
   
 
