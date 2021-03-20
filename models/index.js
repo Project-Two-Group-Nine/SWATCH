@@ -2,32 +2,9 @@
 const User = require('./User');
 const Product = require('./Product');
 const Rating = require('./Rating');
-const Comment = require('./Comment');
 const Wishlist = require('./Wishlist');
 
 
-
-//-----Comment----------
-
-
-Comment.belongsTo(User, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
-Comment.belongsTo(Product, {
-  foreignKey: 'product_id',
-  onDelete: 'SET NULL'
-});
-
-User.hasMany(Comment, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
-Product.hasMany(Comment, {
-  foreignKey: 'product_id'
-});
 
 
 //-------------
@@ -109,4 +86,4 @@ Product.hasMany(Wishlist, {
 
 
 
-module.exports = { User, Product, Rating, Comment, Wishlist };
+module.exports = { User, Product, Rating,  Wishlist };

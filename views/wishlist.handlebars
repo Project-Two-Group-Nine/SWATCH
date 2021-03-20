@@ -1,5 +1,22 @@
-<div>
-    <ul>
-        {{>wishlist-items products}}
-    </ul>
-</div>
+{{#if products.length}}
+<section>
+  <h2>Your Products</h2>
+  <ol>
+    {{#each products as |product|}}
+    
+    <li>
+      {{> product-info product}}
+      </br>
+      <a href="/dashboard/edit/{{product.id}}" class="edit-link">Edit product</a>
+    </li>
+      {{#each product.comments as |comment|}}
+      <li>
+        {{> comments comment}}
+      </li>
+      {{/each}}
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/remove_wishlist.js"></script>

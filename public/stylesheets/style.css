@@ -27,10 +27,6 @@ main {
   flex: 1;
 }
 
-#makeup1 {
-size: 25px;
-}
-
 .float-left {
   float: left;
 }
@@ -776,6 +772,10 @@ input[type=submit]:disabled input[type=submit].disabled {
   margin-left: 20px;
 }
 
+.form-button {
+  margin-top: 10px;
+}
+
 .button-primary {
   background-color: #80cbc4;
   color: #ffffff;
@@ -942,6 +942,7 @@ select {
   background: #ffffff;
   border-radius: 5px;
   border: 1px solid #bdbdbd;
+  max-width: 200px;
 }
 
 input::placeholder, select::placeholder, fieldset::placeholder {

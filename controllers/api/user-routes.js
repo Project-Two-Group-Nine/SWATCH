@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Product, Comment, Rating, Wishlist } = require('../../models');
+const { User, Product,  Rating, Wishlist } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -21,19 +21,11 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model: Comment,
-        attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
-        include: {
-          model: Product,
-          attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
-        }
-      },
-      {
         model: Rating,
         attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
         include: {
           model: Product,
-          attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
+          attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
         }
       },
       {
@@ -41,7 +33,7 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'user_id', 'product_id','wish_list,', 'date'],
         include: {
           model: Product,
-          attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
+          attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
         }
       }
     ]

@@ -21,12 +21,11 @@ Rating.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'product',
-        key: 'int_id'
+        key: 'id'
       }
     },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false
     },
     rating_commentary: {
       type: DataTypes.STRING,

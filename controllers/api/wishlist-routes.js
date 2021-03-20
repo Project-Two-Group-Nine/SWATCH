@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Product, Comment, Rating, Wishlist} = require('../../models');
+const { User, Product,  Rating, Wishlist} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
       },
       {
         model: Product,
-        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
+        attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
       }
     ]
   })
@@ -49,7 +49,7 @@ router.get('/:id', (req, res) => {
       },
       {
         model: Product,
-        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
+        attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
       }
     ]
   })
@@ -74,7 +74,7 @@ router.post('/',  (req, res) => {
     user_id: req.body.user_id,
     product_id: req.body.product_id,
     wish_list: req.body.wish_list,
-    date: new Date() // don't need as sequelize auto creates
+    // date: new Date() <-- don't need as sequelize auto creates
   })
     .then(dbWishlistData => res.json(dbWishlistData))
     .catch(err => {

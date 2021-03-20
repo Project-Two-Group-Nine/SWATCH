@@ -18,15 +18,22 @@
   <div class="card-left">
     {{!-- replace with product img url --}}
     <img class="card-image" src={{image_link}} />
-    <button class="button-info button-round add-wishlist">Wishlist</button>
+    <button class="button-info button-round add-wishlist" id={{id}}>Wishlist</button>
+    <button class="button-info button-round add-rating" id={{id}}>Review</button>
   </div>
   <div class="card-info">
     <a href="/products/{{id}}">
-      <h2 class="card-title">{{int_name}}</h2>
+      <h2 class="card-title" >{{name}}</h2>
     </a>
     <h6>Rating: {{rating}}</h6>
-    {{!-- replace with product description --}}
     <p>{{description}}</p>
+    <p>{{rating_commentary}}</p>
   </div>
 </article>
 {{/if}}
+
+
+
+
+
+
