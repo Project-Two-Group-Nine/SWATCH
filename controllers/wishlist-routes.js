@@ -88,7 +88,8 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then( products => {   
+    .then( dbWishlistData => {   
+      const products = dbWishlistData.map(item => item.get({ plain: true }));
       res.render('wishlist', { products, loggedIn: true });
     })
     .catch(err => {

@@ -2,45 +2,8 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Product, Comment, Rating, Wishlist } = require('../models');
 const withAuth = require('../utils/auth');
-const fetch = require("node-fetch");
 var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-
-
-
-// for interna data, append external data
-var product_append_ext =  async function(dbProductData) {
-  let result=[];
-    // format the api url
-    var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.json";
-    var data = null;
-        // make a request to the url
-        await fetch(apiUrl)
-        .then(async function(response) {
-          // request was successful
-          if (response.ok) {
-            await response.json().then(async function(dbProductData) {
-              data =  await dbProductData;
-            });
-          } else {
-          console.log("Error: " + response.statusText);
-          }
-        })
-        .catch(function(error) {
-          console.log("Unable to connect" + error);
-        });
-   
-     for (var i = 0; i < data.length; i++) {
-          for (var j = 0; j < dbProductData.length; j++) {
-                if (data[i].id == dbProductData[j].dataValues.int_api_id){
-                  result.push(JSON.parse(JSON.stringify( { ...data[i], ...dbProductData[j].dataValues }) ));
-                 }
-            }
-      } 
-
- 
-  return result; 
-};
 
 
 
@@ -88,10 +51,8 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then( async function(dbProductData) {   
-      //var products = await product_append_ext(dbProductData)
+    .then( dbProductData => {   
       res.render('dashboard', {  loggedIn: true });
-      
     })
     .catch(err => {
       console.log(err);
