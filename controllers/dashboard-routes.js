@@ -13,7 +13,7 @@ router.get('/', withAuth, (req, res) => {
   console.log('======================');
   Product.findAll({
       where: {
-        id : {[Op.in]: [sequelize.literal(`(SELECT distinct(product_id) FROM rating WHERE rating.user_id = ${req.session.user_id} group by product_id)`), 'id']}
+        id : [sequelize.literal(`(SELECT distinct(product_id) FROM rating WHERE rating.user_id = ${req.session.user_id} group by product_id)`)]
       },
       attributes: [
         'id',
