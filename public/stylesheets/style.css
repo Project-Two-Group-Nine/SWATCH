@@ -914,6 +914,7 @@ input[type=submit]:disabled input[type=submit].disabled {
 label {
   font-size: 14px;
   font-weight: 400;
+  margin-right: 10px;
 }
 
 input[type=file],
@@ -989,6 +990,7 @@ select {
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
   padding-right: 30px;
+  margin-bottom: 10px;
 }
 select:hover {
   cursor: pointer;

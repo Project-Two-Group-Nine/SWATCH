@@ -50,57 +50,57 @@ var product_append_ext =  async function(dbProductData) {
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
-  Product.findAll({
-      where: {
-        int_id : {[Op.in]: [sequelize.literal(`(SELECT product_id FROM comment WHERE comment.user_id = ${req.session.user_id}  union SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'int_id']}
-      },
-      attributes: [
-        'int_id',
-        'int_name',
-        'int_api_id',
-        'int_featured',
-        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'int_rating_avg']
-      ],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
-        },
-        {
-          model: Rating,
-          attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
-        },
-        {
-          model: Wishlist,
-          attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
-        }
-      ]
-    })
-    .then( async function(dbProductData) {   
+  // Product.findAll({
+  //     where: {
+  //       int_id : {[Op.in]: [sequelize.literal(`(SELECT product_id FROM comment WHERE comment.user_id = ${req.session.user_id}  union SELECT product_id FROM rating WHERE rating.user_id = ${req.session.user_id})`), 'int_id']}
+  //     },
+  //     attributes: [
+  //       'int_id',
+  //       'int_name',
+  //       'int_api_id',
+  //       'int_featured',
+  //       [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'int_rating_avg']
+  //     ],
+  //     include: [
+  //       {
+  //         model: Comment,
+  //         attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
+  //         include: {
+  //           model: User,
+  //           attributes: ['id', 'name', 'email']
+  //         }
+  //       },
+  //       {
+  //         model: Rating,
+  //         attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
+  //         include: {
+  //           model: User,
+  //           attributes: ['id', 'name', 'email']
+  //         }
+  //       },
+  //       {
+  //         model: Wishlist,
+  //         attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
+  //         include: {
+  //           model: User,
+  //           attributes: ['id', 'name', 'email']
+  //         }
+  //       }
+  //     ]
+  //   })
+
+    // .then( //async function(dbProductData) {   
       //var products = await product_append_ext(dbProductData)
-      res.render('dashboard', {  loggedIn: true });
+      //res.render('dashboard', {  loggedIn: true })
       
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    //}
+    //)
+    res.render('dashboard', { loggedIn: true })
+    // .catch(err => {
+    //   console.log(err);
+    //   res.status(500).json(err);
+    // });
 });
-
-
-
 
 ////////////////////////////////
 

@@ -1,15 +1,12 @@
-<section>
-  <h1>Dashboard</h1>
-  <h2>Review Product</h2>
+<section class="section-secondary">
+  <div class="container">
 
-  <form class="new-comment-form">
-    <div>
-      <label for="comment">Review</label>
-      <input type="text" id="comment" name="comment" />
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-  <div>
+  <h3>Dashboard</h3>
+  <h6>Review Product</h6>
+
+  <div class="row">
+
+  <div class="col col-sm-6">
     <select name="category" id="category">
        <option value="category">Category</option>
        <option value="concealer">Concealer</option>
@@ -29,7 +26,33 @@
        <option value="tarteBrush">SEA Aquaflash Foundation Brush</option>
     </select>
   </div>
+
+  <form class="create-review-form col col-sm-6">
+    <div>
+
+      <label for="rating">Rate </label>
+      <input type="radio" id="rating-1" name="rating" />
+      <input type="radio" id="rating-2" name="rating" />
+      <input type="radio" id="rating-3" name="rating" />
+      <input type="radio" id="rating-4" name="rating" />
+      <input type="radio" id="rating-5" name="rating" />
+
+    </div>
+
+    <div>
+
+      <label for="review">Review</label>
+      <input type="text" id="review" name="review" />
+      <button type="submit" class="button-info button-round form-button">Create</button>
+    
+    </div>
+  </form>
+
+  </div>
+
 </section>
+
+
 <section>
   <h2>Your Reviews</h2>
   <div class="yourReviews">
