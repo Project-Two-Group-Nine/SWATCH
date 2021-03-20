@@ -39,7 +39,7 @@ var product_ext_meaningful_fields =  async function() {
         image_link: data[i].image_link, 
         description: data[i].description, 
         rating: data[i].rating, 
-        cateory: data[i].category, 
+        category: data[i].category, 
         product_type: data[i].product_type, 
         api_featured_image: data[i].api_featured_image, 
         featured: 0,
