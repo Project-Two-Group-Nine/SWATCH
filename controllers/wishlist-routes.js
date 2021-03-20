@@ -7,59 +7,20 @@ var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-
-// for interna data, append external data
-var product_append_ext =  async function(dbProductData) {
-  let result=[];
-    // format the api url
-    var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.json";
-    var data = null;
-        // make a request to the url
-        await fetch(apiUrl)
-        .then(async function(response) {
-          // request was successful
-          if (response.ok) {
-            await response.json().then(async function(dbProductData) {
-              data =  await dbProductData;
-            });
-          } else {
-          console.log("Error: " + response.statusText);
-          }
-        })
-        .catch(function(error) {
-          console.log("Unable to connect" + error);
-        });
-   
-     for (var i = 0; i < data.length; i++) {
-          for (var j = 0; j < dbProductData.length; j++) {
-                if (data[i].id == dbProductData[j].dataValues.int_api_id){
-                  result.push(JSON.parse(JSON.stringify( { ...data[i], ...dbProductData[j].dataValues }) ));
-                 }
-            }
-      } 
-
-  
-  return result; 
-};
-
-
-
-
-//////////////////////////////////////////////////////////////
 // get all products for wishlist
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
   Product.findAll({
       where: {
-        int_id : {[Op.in]: [sequelize.literal(`(SELECT unisque(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
+        id : {[Op.in]: [sequelize.literal(`(SELECT unisque(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
       },
       attributes: [
-        'int_id',
-        'int_name',
-        'int_api_id',
-        'int_featured',
-        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.int_id = rating.product_id)'), 'int_rating_avg']
+        'id',
+        'api_id',
+        'name',
+        'featured',
+        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
       ],
       include: [
         {
@@ -88,9 +49,13 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then( async function(dbProductData) {   
-      var products = await product_append_ext(dbProductData)
-      res.render('wishlist', { products, loggedIn: true });
+    .then(dbProductData => {
+      const products = dbProductData.map(product => product.get({ plain: true }));
+
+      res.render('wishlist', {
+        products,
+        loggedIn: req.session.loggedIn
+      });
     })
     .catch(err => {
       console.log(err);
@@ -119,7 +84,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
       },
       {
         model: Product,
-        attributes: ['int_id', 'int_name', 'int_api_id','int_featured','int_rating_avg']
+        attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
       }
     ]
   })
