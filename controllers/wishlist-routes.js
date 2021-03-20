@@ -43,9 +43,6 @@ var product_append_ext =  async function(dbProductData) {
 };
 */
 
-
-
-
 //////////////////////////////////////////////////////////////
 // get all products for wishlist
 router.get('/', withAuth, (req, res) => {
@@ -53,7 +50,9 @@ router.get('/', withAuth, (req, res) => {
   console.log('======================');
   Product.findAll({
       where: {
+
         int_id : {[Op.in]: [sequelize.literal(`(SELECT product_id FROM wishlist WHERE wishlist.user_id = ${req.session.user_id})`), 'id']}
+
       },
       attributes: [
         'int_id',
@@ -89,8 +88,7 @@ router.get('/', withAuth, (req, res) => {
         }
       ]
     })
-    .then( dbProductData => {   
-      const products = dbProductData.map(post => post.get({ plain: true }));
+    .then( products => {   
       res.render('wishlist', { products, loggedIn: true });
     })
     .catch(err => {
