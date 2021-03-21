@@ -3,11 +3,11 @@ const menu = document.querySelector('.mobile-menu');
 
 const toggleMobileMenu = (e) => {
     if (e.target === menuToggle) {
-        menuToggle.style.display = 'none';
+        menuToggle.style.visibility = 'hidden';
         menu.style.display = 'block';
     }
     else {
-        menuToggle.style.display = 'block';
+        menuToggle.style.visibility = 'visible';
         menu.style.display = 'none';
     }
 } 
