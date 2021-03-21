@@ -6,12 +6,17 @@ if (event.target.textContent=="Review") {
   const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
-  const product_id = id;
-  const rating = 1;
-  const rating_commentary ="ok";
+  
+  
+  const product_id = parseInt(event.target.id);
+  const rating = parseInt(document.querySelector('#rating').value);
+  const rating_commentary =document.querySelector('#review').value;
   const date = Date.now();
 
-  console.log( event.target.id)
+  console.log(product_id,
+    rating,
+    rating_commentary,
+    date)
 
   const response = await fetch(`/api/ratings`, {
     method: 'POST',
@@ -36,4 +41,4 @@ if (event.target.textContent=="Review") {
 }
 
 
-document.querySelector('.all-products').addEventListener('click', newRatingHandler)
+document.querySelector('.modal').addEventListener('click', newRatingHandler)
