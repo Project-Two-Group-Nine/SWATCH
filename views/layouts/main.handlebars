@@ -30,25 +30,16 @@
                 <li><a href="/login">login</a></li>
                 {{/if}}
             </ul>
-        </div>
-    </nav>
-
-    {{!-- second nav (product categories) --}}
-    <nav class="nav-secondary">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><h6>Products</h6></li>
-                <li><a href="/">All</a></li>
-                <li><a href="/">New</a></li>
-                <li><a href="/">Skincare</a></li>
-                <li><a href="/">Eyes</a></li>
-                <li><a href="/">Lips</a></li>
-            </ul>
-            <div class="nav-input">
-                <input type="text" name="search-product">
-                <button class="button-primary button-round nav-button" id="search-product" type="submit">Search</button>
-                <button id="open-filter" class="button-primary button-round nav-button">Sort/Filter</button>
-            </div>
+        <a class="mobile-menu-toggle"></a>
+        <ul class="mobile-menu menu" style="display: none;">
+            {{#if loggedIn}}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/wishlist">Wishlist</a></li>
+            <li><button id="logout" class="">logout</button></li>
+            {{else}}
+            <li><a href="/login">login</a></li>
+            {{/if}}
+        </ul>
         </div>
     </nav>
     
@@ -89,4 +80,5 @@
 
 </html>
 
+<script src="/javascript/mobile-menu.js"></script>
 <script src="/javascript/add-wishlist.js"></script>

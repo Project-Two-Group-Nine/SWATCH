@@ -1336,6 +1336,18 @@ header .scroll-down::before,
 .menu li a:focus, .menu li a:hover {
   background: #fafafa;
 }
+.menu li button {
+  background: none;
+  border: none;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  box-shadow: none;
+  font-weight: 400;
+  font-size: inherit;
+  display: block;
+  padding: 10px 30px;
+  transform: none;
+}
 
 .modal-mask {
   position: fixed;
@@ -1448,6 +1460,9 @@ nav a,
   align-items: center;
   padding: 0 30px;
 }
+.nav-input input {
+  min-width: 100px;
+}
 
 .mobile-menu-toggle {
   display: block;
@@ -1473,6 +1488,10 @@ nav a,
   background: #424242;
   border-radius: 4px;
   box-shadow: 0 8px 0 0 #424242, 0 16px 0 0 #424242;
+}
+
+.mobile-menu {
+  z-index: 999;
 }
 
 .sidebar {
