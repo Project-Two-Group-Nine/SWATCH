@@ -35,7 +35,7 @@ var product_ext_meaningful_fields =  async function() {
       dataOut.push(JSON.parse(JSON.stringify( { api_id: data[i].id, 
         name: data[i].name, 
         brand: data[i].brand, 
-        price: data[i].price, 
+        price: parseFloat(data[i].price), 
         image_link: data[i].image_link, 
         description: data[i].description, 
         rating: data[i].rating, 
