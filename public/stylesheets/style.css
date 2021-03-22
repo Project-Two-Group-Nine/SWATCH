@@ -1356,7 +1356,7 @@ header .scroll-down::before,
   bottom: 0;
   left: 0;
   background: rgba(97, 97, 97, 0.5);
-  z-index: 10;
+  z-index: 999;
 }
 
 .modal {
@@ -1371,6 +1371,7 @@ header .scroll-down::before,
   background: #ffffff;
   border-radius: 5px;
   overflow: hidden;
+  z-index: 1000;
   box-shadow: 0 4px 12px rgba(117, 117, 117, 0.5);
 }
 

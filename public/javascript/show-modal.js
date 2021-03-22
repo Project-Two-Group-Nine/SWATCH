@@ -1,19 +1,19 @@
 const showModal = (e) => {
-    const mask = document.querySelector('.modal-mask');
-    const modal = document.querySelector('.modal');
-
-    if (e.target === document.querySelector('.show-modal')) {
+    if (e.target.textContent=="Review") {
         const id = e.target.dataset.productid;
    
-        mask.style.display = "block";
-        modal.style.display = "block";
+        document.querySelector('.modal-mask').style.display = "block";
+        document.querySelector('.modal').style.display = "block";
         document.querySelector('.add-rating').id  = id;
-    }
-    else if (e.target = mask) {
-        mask.style.display = "none";
-        modal.style.display = "none";
     }
 }
 
-document.querySelector("body").addEventListener('click', showModal);
+const hideModal = (e) => {
+    if (e.target === document.querySelector('.modal-mask')) {
+        document.querySelector('.modal-mask').style.display = "none";
+        document.querySelector('.modal').style.display = "none";
+    }
+}
 
+document.querySelector(".all-products").addEventListener('click', showModal);
+document.querySelector("main").addEventListener('click', hideModal);
