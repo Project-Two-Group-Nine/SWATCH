@@ -24,12 +24,11 @@
     <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
   </div>
   <div class="card-info">
-    <a href="/products/{{id}}">
       <h2 class="card-title" >{{name}}</h2>
-    </a>
-    <h6>Rating: {{int_rating_avg}}</h6>
+      <h6>Brand: {{brand}}</h6>
+      <h6>Price: {{price}} $</h6>
+      <h6>Rating: {{int_rating_avg}}</h6>
     <p>{{{description}}}</p>
-    <p>{{rating_commentary}}</p>
   </div>
 </article>
 {{/if}}
