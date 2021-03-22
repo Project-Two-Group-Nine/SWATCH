@@ -35,7 +35,9 @@
   <h3>Your Reviews</h3>
 
     {{#each products as |product|}}
-      {{> rating-info product}}
+      {{#each ratings as |rating|}}
+        {{> rating-info rating}}
+      {{/each}}
     {{/each}}
 
 </section>

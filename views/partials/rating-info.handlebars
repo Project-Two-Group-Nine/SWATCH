@@ -2,11 +2,11 @@
     <article class="card">
         <div class="card-left">
             {{!-- replace with product img url --}}
-            <img class="card-image" src={{image_link}} />
+            <img class="card-image" src={{product.image_link}} />
         </div>
         <div class="card-info">
             <a href="/products/{{id}}">
-                <h2 class="card-title">{{name}}</h2>
+                <h2 class="card-title">{{product.name}}</h2>
             </a>
             <form class="create-review-form col col-sm-6">
                 <div>
@@ -27,9 +27,9 @@
                     <label for="review">Review</label>
                     <textarea name="review">{{rating_commentary}}</textarea>
                     <button type="submit" class="button-info button-round form-button update-rating rate-btn"
-                        data-productid={{id}}>Update</button>
+                        data-ratingid={{id}}>Update</button>
                     <button type="submit" class="button-info button-round form-button remove-rating rate-btn"
-                        data-productid={{id}}>Remove</button>
+                        data-ratingid={{id}}>Remove</button>
                 </div>
             </form>
         </div>

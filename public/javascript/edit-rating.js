@@ -5,7 +5,7 @@ if (event.target.textContent=="Update") {
   
   const form = event.target.closest('form');
   
-  const id = parseInt(event.target.dataset.productid);
+  const id = parseInt(event.target.dataset.ratingid);
   const rating = parseInt(form.querySelector('select[name="rating"]').value);
   const rating_commentary = form.querySelector('textarea').value.trim();
   const date = Date.now();
