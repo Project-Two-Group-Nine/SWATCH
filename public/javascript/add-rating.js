@@ -6,7 +6,7 @@ if (event.target.textContent=="Review") {
   
   const product_id = parseInt(event.target.id);
   const rating = parseInt(document.querySelector('#rating').value);
-  const rating_commentary =document.querySelector('#review').value.trim();
+  const rating_commentary = document.querySelector('#review').value.trim();
   const date = Date.now();
 
   

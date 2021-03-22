@@ -3,9 +3,9 @@ async function deleteRatingHandler(event) {
   if (event.target.textContent=="Remove") {
     event.preventDefault();
     
-    
-    const id = parseInt(event.target.id);
+    const id = parseInt(event.target.dataset.ratingid);
 
+    console.log(id);
   
     const response = await fetch(`/api/ratings/${id}`, {
       method: 'DELETE'
@@ -16,10 +16,7 @@ async function deleteRatingHandler(event) {
     } else {
       alert(response.statusText);
     }
-  }
-
+   }
+}
   
-  }
-  
-  
-  document.querySelector('.all-reviews').addEventListener('click', deleteRatingHandler)
+document.querySelector('.all-reviews').addEventListener('click', deleteRatingHandler)

@@ -1,36 +1,52 @@
 async function editRatingHandler(event) {
 
-if (event.target.textContent=="Update") {
-  event.preventDefault();
-  
-  
-  const id = parseInt(event.target.id);
-  const rating = parseInt(document.querySelector('#rating').value);
-  const rating_commentary =document.querySelector('#review').value.trim();
-  const date = Date.now();
+  if (event.target.textContent === 'Save') {
+    event.preventDefault();
 
+    const form = event.target.closest('form');
 
+    const id = parseInt(event.target.dataset.ratingid);
+    const rating = parseInt(form.querySelector('select[name="rating"]').value);
+    const rating_commentary = form.querySelector('textarea').value.trim();
+    const date = Date.now();
 
-  const response = await fetch(`/api/ratings/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      rating,
-      rating_commentary,
-      date
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+    const response = await fetch(`/api/ratings/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        rating,
+        rating_commentary,
+        date
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
-  if (response.ok) {
-    document.location.reload();
-  } else {
-    alert(response.statusText);
-  }
-}
+    form.querySelector('.edit-review').style.display = 'none';
+    form.querySelector('.update-rating').textContent = 'Update';
 
-}
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert(response.statusText);
+    };
+  };
 
+};
 
-document.querySelector('.all-reviews').addEventListener('click', editRatingHandler)
+const showEditForm = (e) => {
+  if (e.target.textContent === "Update") {
+    e.preventDefault();
+
+    const form = e.target.closest('form');
+
+    form.querySelector('.show-review').style.display = 'none';
+    form.querySelector('.edit-review').style.display = 'block';
+
+    form.querySelector('.update-rating').textContent = 'Save';
+
+  };
+};
+
+document.querySelector('.all-reviews').addEventListener('click', editRatingHandler);
+document.querySelector('.all-reviews').addEventListener('click', showEditForm);

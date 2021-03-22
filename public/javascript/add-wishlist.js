@@ -4,7 +4,7 @@ async function newWishHandler(event) {
   if (event.target.textContent=="Wishlist") {
     event.preventDefault();
     
-    const product_id = event.target.id;
+    const product_id = event.target.dataset.productid;
     const wish_list =1;
     const date = Date.now();
 
