@@ -37,7 +37,7 @@
 
 
 {{#if products.length}}
-<section>
+<section class="all-reviews">
   <h3>Your Reviews</h3>
 
     {{#each products as |product|}}
@@ -48,5 +48,7 @@
     {{/each}}
 
 </section>
+<script src="/javascript/edit-rating.js"></script>
+<script src="/javascript/delete-rating.js"></script>
 {{/if}}
 
