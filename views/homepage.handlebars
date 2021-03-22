@@ -1,6 +1,8 @@
 {{> modal}}
 
+
 {{> second-nav}}
+
 
 <section class="section-tertiary">
     <div class="container">
@@ -14,11 +16,9 @@
             <div class="col col-md-7 all-products">
 
                 {{#each products as |product|}}
-
                     {{#unless product.featured}}
-                        {{> product-info product}}
-                    {{/unless}}
-
+                            {{> product-info product}}
+                     {{/unless}}
                 {{/each}}
 
             </div>
@@ -42,7 +42,7 @@
 
 {{!-- temp hardcoded to see the layout --}}
 
-<section class="section-tertiary">
+{{!-- <section class="section-tertiary">
     <div class="container">
         <div class="row">
             <h3>All Products</h3>
@@ -123,8 +123,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-
-<script src="javascript/show-modal.js"></script>
-<script src="/javascript/rate.js"></script>
+{{#if loggedIn}}
+    <script src="/javascript/add-wishlist.js"></script>
+    <script src="/javascript/show-modal.js"></script>
+    <script src="/javascript/paginate.js"></script>
+{{/if}}

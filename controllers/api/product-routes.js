@@ -13,8 +13,14 @@ router.get('/', (req, res) => {
       'api_id',
       'image_link',
       'description',
+      'brand',
+      'price',
+      'rating',
+      'category',
+      'product_type',
+      'api_featured_image',
       'featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
+      [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
     include: [
       {
@@ -46,15 +52,20 @@ router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
       // int_api_id: req.params.id
-      int_id: req.params.id
+      id: req.params.id
 
     },
     attributes: [
       'id',
       'name',
       'api_id',
+      'brand',
+      'price',
+      'rating',
+      'category',
+      'product_type',
       'featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
+      [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
     include: [
       {

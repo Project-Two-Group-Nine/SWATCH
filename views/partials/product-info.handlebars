@@ -1,15 +1,16 @@
+
 {{#if featured}}
 <article class="card card-tertiary card-vertical">
   <h2 class="card-title">FEATURED</h2>
   {{!-- replace with product img url --}}
   <img class="card-image" src={{image_link}}  />
-  <button class="button-primary button-round add-wishlist">Wishlist</button>
-  <button class="button-info button-round show-modal" id={{id}}>Review</button>
+  <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+  <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
   <div class="card-info">
     <a href="/products/{{id}}">
-      <h2 class="card-title"></h2>{{int_name}}</h2>
+      <h2 class="card-title"></h2>{{name}}</h2>
     </a>
-    <h6>Rating: *****</h6>
+    <h6>Rating: {{int_rating_avg}}</h6>
     {{!-- replace with product description --}}
     <p>{{{description}}}</p>
   </div>
@@ -19,22 +20,20 @@
   <div class="card-left">
     {{!-- replace with product img url --}}
     <img class="card-image" src={{image_link}} />
-    <button class="button-info button-round add-wishlist" id={{id}}>Wishlist</button>
-    <button class="button-info button-round show-modal" id={{id}}>Review</button>
+    <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+    <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
   </div>
   <div class="card-info">
-    <a href="/products/{{id}}">
       <h2 class="card-title" >{{name}}</h2>
-    </a>
-    <h6>Rating: {{rating}}</h6>
+      <h6>Brand: {{brand}}</h6>
+      <h6>Price: {{price}} $</h6>
+      <h6>Rating: {{int_rating_avg}}</h6>
     <p>{{{description}}}</p>
-    <p>{{rating_commentary}}</p>
   </div>
 </article>
 {{/if}}
 
 
-
-
+    
 
 

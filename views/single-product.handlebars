@@ -1,21 +1,74 @@
 {{modal}}
 
-{{> product-info product}}
+{{!-- <section class="section-secondary">
+  {{> product-info product}}
+</section>
 
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment"></textarea>
+<section>
+  <div class="container container-large">
+    <div class="row">
+      <h2>Reviews</h2>
+    </div>
+
+    <div class="row">
+      {{#each ratings}}
+        {{> rating-info product}}
+      {{/each}}
+    </div>
   </div>
+</section> --}}
 
-  <div>
-    <button type="submit">add comment</button>
-    <button type="button" class="rate-btn">rate</button>
+{{!-- temp hardcoded to see layout --}}
+
+<section>
+  <div class="container container-large">
+    <div class="row">
+      <h2>Reviews</h2>
+    </div>
+
+    <div class="row">
+
+
+      <div class="col">
+        <article class="card">
+          <div class="card-info">
+            <h2 class="card-title">Rating: 4 by username on 21/1/21</h2>
+            <p>This is a review. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
+              mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
+              orci, id ultricies ex.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col">
+        <article class="card">
+          <div class="card-info">
+            <h2 class="card-title">Rating: 4 by username on 21/1/21</h2>
+            <p>This is a review. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
+              mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
+              orci, id ultricies ex.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col">
+        <article class="card">
+          <div class="card-info">
+            <h2 class="card-title">Rating: 4 by username on 21/1/21</h2>
+            <p>This is a review. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
+              mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
+              orci, id ultricies ex.</p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
   </div>
-</form>
-{{/if}}
-
-{{> comments product.comments}}
+</section>
 
 {{#if loggedIn}}
 <script src="/javascript/rate.js"></script>

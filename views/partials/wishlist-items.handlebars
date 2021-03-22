@@ -1,3 +1,12 @@
-{{#each this}}
-<li>{{int_name}}</li>
-{{/each}}
+<div class="col col-md-4 col-lg-3">
+
+<article class="card card-vertical">
+    <a href="/products/{{id}}">
+        <h2 class="card-title">{{name}}</h2>
+    </a>
+    <img class="card-image" src={{image_link}} />
+    <p>{{{description}}}</p>
+    <button class="button-info button-round remove-wishlist" id={{id}}>Remove</button>
+</article>
+
+</div>
