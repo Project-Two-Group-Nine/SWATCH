@@ -116,7 +116,7 @@ router.delete('/:id', withAuth, (req, res) => {
   Rating.destroy({
     where: {
       user_id: req.session.user_id,
-      product_id: req.params.id
+      id: req.params.id
     }
   })
     .then(dbRatingData => {
