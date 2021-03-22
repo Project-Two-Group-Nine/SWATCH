@@ -14,97 +14,57 @@ router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
   Product.findAll({
-      where: {
-        id : [sequelize.literal(`(SELECT distinct(product_id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id} group by product_id)`)]
-      },
-      attributes: [
-        'id',
-        'api_id',
-        'name',
-        'image_link',
-        'description',
-        'brand',
-        'price',
-        'rating',
-        'category',
-        'product_type',
-        'featured',
-        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
-      ],
-      include: [
-        {
-          model: Rating,
-          attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
+    where: {
+      id : [sequelize.literal(`(SELECT distinct(product_id) FROM rating WHERE rating.user_id = ${req.session.user_id} group by product_id)`)]
+    },
+    attributes: [
+      'id',
+      'name',
+      'api_id',
+      'image_link',
+      'description',
+      'brand',
+      'price',
+      'rating',
+      'category',
+      'product_type',
+      'featured',
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
+    ],
+    include: [
+      {
+        model: Rating,
+        where: {
+          id : [sequelize.literal(`(SELECT distinct(id) FROM rating WHERE rating.user_id = ${req.session.user_id} group by id)`)]
         },
-        {
-          model: Wishlist,
-          attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
+        attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
+        include: {
+          model: User,
+          attributes: ['id', 'name', 'email']
         }
-      ]
+      },
+      {
+        model: Wishlist,
+        where: {
+          id : [sequelize.literal(`(SELECT distinct(id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id} group by id)`)]
+        },
+        attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
+        include: {
+          model: User,
+          attributes: ['id', 'name', 'email']
+        }
+      }
+    ]
     })
     .then( dbWishlistData => {   
       const products = dbWishlistData.map(item => item.get({ plain: true }));
       res.render('wishlist', { products, loggedIn: req.session.loggedIn });
-
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
-
-
-
-
-////////////////////////////////
-
-
-router.get('/edit/:id', withAuth, (req, res) => {
-  Wishlist.findByPk(req.params.id, {
-    attributes: [
-      'id',
-      'user_id',
-      'wish_list',
-      'date'
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['id', 'name', 'email']
-      },
-      {
-        model: Product,
-        attributes: ['id', 'name', 'api_id','brand','price','rating','category','product_type','featured','int_rating_avg']
-      }
-    ]
-  })
-    .then(dbWishlistData => {
-      if (dbWishlistData) {
-      
-        const wishlist = dbCommentData.get({ plain: true });
-        res.render('edit-wishlist', {
-          wishlist,
-          loggedIn: true
-        });
-      } else {
-        res.status(404).end();
-      }
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-
-
 
 
 module.exports = router;

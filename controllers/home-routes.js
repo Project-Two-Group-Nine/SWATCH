@@ -8,7 +8,7 @@ const fetch = require("node-fetch");
 
 
 
-// get all products for dashboard
+// get all products for home
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
@@ -61,6 +61,8 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
+
+// get filtered products
 router.get('/products/:id', (req, res) => {
   Product.findAll({
     where: {
