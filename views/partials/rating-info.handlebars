@@ -1,17 +1,10 @@
 <div class="col">
     <article class="card">
-        <div class="card-left">
-            {{!-- replace with product img url --}}
-            <img class="card-image" src={{product.image_link}} />
-        </div>
         <div class="card-info">
-            <a href="/products/{{id}}">
-                <h2 class="card-title">{{product.name}}</h2>
-            </a>
             <form class="create-review-form col col-sm-6">
                 <div>
 
-                    <label for="rating">Rate </label>
+                    <label for="rating">Your Rating </label>
                     <select name="rating">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -24,7 +17,7 @@
 
                 <div>
 
-                    <label for="review">Review</label>
+                    <label for="review">Your Review</label>
                     <textarea name="review">{{rating_commentary}}</textarea>
                     <button type="submit" class="button-info button-round form-button update-rating rate-btn"
                         data-ratingid={{id}}>Update</button>

@@ -19,7 +19,6 @@ router.get('/', withAuth, (req, res) => {
         'name',
         'api_id',
         'image_link',
-        'description',
         'brand',
         'price',
         'rating',
