@@ -1,4 +1,3 @@
-<!-- 
 <section class="section-secondary">
   <div class="container">
 
@@ -30,24 +29,17 @@
        
     </div>
 </section>
--->
-
-
-{{> second-nav}}
-
 
 {{#if products.length}}
 <section class="all-reviews">
   <h3>Your Reviews</h3>
 
     {{#each products as |product|}}
-      {{> product-info product}}
-      {{#each ratings as |rating|}}
-      {{> rating-info rating}}
-      {{/each}}
+      {{> rating-info product}}
     {{/each}}
 
 </section>
+
 <script src="/javascript/edit-rating.js"></script>
 <script src="/javascript/delete-rating.js"></script>
 {{/if}}

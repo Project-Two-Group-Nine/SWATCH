@@ -4,7 +4,7 @@ async function deleteRatingHandler(event) {
     event.preventDefault();
     
     
-    const id = parseInt(event.target.id);
+    const id = parseInt(event.target.dataset.productid);
 
   
     const response = await fetch(`/api/ratings/${id}`, {
