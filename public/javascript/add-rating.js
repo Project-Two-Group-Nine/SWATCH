@@ -3,13 +3,10 @@ async function newRatingHandler(event) {
 if (event.target.textContent=="Review") {
   event.preventDefault();
   
-  
   const product_id = parseInt(event.target.id);
   const rating = parseInt(document.querySelector('#rating').value);
   const rating_commentary = document.querySelector('#review').value.trim();
   const date = Date.now();
-
-  
 
   const response = await fetch(`/api/ratings`, {
     method: 'POST',
@@ -32,6 +29,5 @@ if (event.target.textContent=="Review") {
 }
 
 }
-
 
 document.querySelector('.modal').addEventListener('click', newRatingHandler)
