@@ -1,22 +1,19 @@
 async function newWishHandler(event) {
     
-
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
   
   if (event.target.textContent=="Wishlist") {
     event.preventDefault();
     
     const product_id = event.target.id;
+    const wish_list =1;
     const date = Date.now();
 
-    console.log( event.target.id)
 
     const response = await fetch(`/api/wishlists`, {
       method: 'POST',
       body: JSON.stringify({
         product_id,
+        wish_list,
         date
       }),
       headers: {

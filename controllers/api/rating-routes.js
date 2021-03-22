@@ -86,10 +86,18 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  Rating.update(req.body, {
+  Rating.update(
+    {
+      rating : req.body.rating,
+      rating_commentary : req.body.rating_commentary,
+      date : req.body.date
+    },
+    {
     where: {
+      user_id: req.session.user_id,
       id: req.params.id
     }
+    
   })
     .then(dbRatingData => {
       if (!dbRatingData) {
@@ -107,6 +115,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
   Rating.destroy({
     where: {
+      user_id: req.session.user_id,
       id: req.params.id
     }
   })

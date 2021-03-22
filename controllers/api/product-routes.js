@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       'image_link',
       'description',
       'featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)')]
     ],
     include: [
       {
@@ -54,7 +54,7 @@ router.get('/:id', (req, res) => {
       'name',
       'api_id',
       'featured',
-      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
+      [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)')]
     ],
     include: [
       {

@@ -1,6 +1,13 @@
 const showModal = (e) => {
-    document.querySelector('.modal-mask').style.display = "block";
-    document.querySelector('.modal').style.display = "block";
+    if (e.target.textContent=="Review") {
+    id = e.target.id
+   
+
+        document.querySelector('.modal-mask').style.display = "block";
+        document.querySelector('.modal').style.display = "block";
+        document.querySelector('.add-rating').id  = id;
+    }
 }
 
-document.querySelector(".show-modal").addEventListener('click', showModal);
+document.querySelector(".all-products").addEventListener('click', showModal);
+
