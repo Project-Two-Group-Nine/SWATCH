@@ -39,17 +39,6 @@ router.get('/', withAuth, (req, res) => {
             model: User,
             attributes: ['id', 'name', 'email']
           }
-        },
-        {
-          model: Wishlist,
-          where: {
-            id : [sequelize.literal(`(SELECT distinct(id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id} group by id)`)]
-          },
-          attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
-          include: {
-            model: User,
-            attributes: ['id', 'name', 'email']
-          }
         }
       ]
     })
