@@ -1,8 +1,9 @@
+<!-- 
 <section class="section-secondary">
   <div class="container">
 
     <h3>Dashboard</h3>
-    <h6>Review Product</h6>
+     <h6>Review Product</h6>
 
     <div class="row">
 
@@ -26,84 +27,13 @@
           <option value="tarteBrush">SEA Aquaflash Foundation Brush</option>
         </select>
       </div>
-
-      <form class="create-review-form col col-sm-6">
-        <div>
-
-          {{!-- <label for="rating">Rate </label>
-          <input type="radio" id="rating-1" name="rating" />
-          <input type="radio" id="rating-2" name="rating" />
-          <input type="radio" id="rating-3" name="rating" />
-          <input type="radio" id="rating-4" name="rating" />
-          <input type="radio" id="rating-5" name="rating" /> --}}
-
-          <label for="rating">Rate </label>
-          <select id="rating" name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-
-        </div>
-
-        <div>
-
-          <label for="review">Review</label>
-          <input type="text" id="review" name="review" />
-          <button type="submit" class="button-info button-round form-button">Create</button>
-
-        </div>
-      </form>
-
+       
     </div>
 </section>
+-->
 
-<section>
-  <h3>Your Reviews</h3>
 
-  <article class="card">
-    <div class="card-left">
-      {{!-- replace with product img url --}}
-      <img class="card-image" src={{image_link}} />
-    </div>
-
-    <div class="card-info">
-
-      <h4 class="card-title">Product Name</h4>
-      <h6>Rating: *****</h4>
-        <h6>Your review</h4>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum
-            perferendis incidunt
-            non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta,
-            quidem accusamus
-            sint exercitationem ullam.</p>
-
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-left">
-      {{!-- replace with product img url --}}
-      <img class="card-image" src={{image_link}} />
-    </div>
-
-    <div class="card-info">
-
-      <h4 class="card-title">Product Name</h4>
-      <h6>Rating: *****</h4>
-        <h6>Your review</h4>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores assumenda laborum
-            perferendis incidunt
-            non, illo sapiente iusto beatae quas dicta quibusdam consequuntur nostrum voluptas soluta,
-            quidem accusamus
-            sint exercitationem ullam.</p>
-
-    </div>
-  </article>
-
-</section>
+{{> second-nav}}
 
 
 {{#if products.length}}
@@ -112,6 +42,9 @@
 
     {{#each products as |product|}}
       {{> product-info product}}
+      {{#each ratings as |rating|}}
+      {{> rating-info rating}}
+      {{/each}}
     {{/each}}
 
 </section>
