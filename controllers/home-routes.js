@@ -19,6 +19,11 @@ router.get('/', withAuth, (req, res) => {
         'api_id',
         'image_link',
         'description',
+        'brand',
+        'price',
+        'rating',
+        'category',
+        'product_type',
         'featured',
         [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
       ],
@@ -56,6 +61,39 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
+router.get('/products/:id', (req, res) => {
+  Product.findAll({
+    where: {
+      Product_type: req.params.id
+    },
+    attributes: [
+      'id',
+      'name',
+      'api_id',
+      'image_link',
+      'description',
+      'brand',
+      'price',
+      'rating',
+      'category',
+      'product_type',
+      'featured',
+      [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
+    ],
+    limit: 10
+  })
+  .then(dbProductData => {
+    const products = dbProductData.map(product => product.get({ plain: true }));
+    res.render('homepage', {
+      products,
+      loggedIn: req.session.loggedIn
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
   ////////login//////
 

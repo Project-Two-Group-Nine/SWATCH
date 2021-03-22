@@ -23,6 +23,11 @@ router.get('/', withAuth, (req, res) => {
         'name',
         'image_link',
         'description',
+        'brand',
+        'price',
+        'rating',
+        'category',
+        'product_type',
         'featured',
         [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg']
       ],
@@ -77,7 +82,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
       },
       {
         model: Product,
-        attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
+        attributes: ['id', 'name', 'api_id','brand','price','rating','category','product_type','featured','int_rating_avg']
       }
     ]
   })
