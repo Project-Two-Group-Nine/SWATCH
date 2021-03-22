@@ -3,10 +3,6 @@ async function newRatingHandler(event) {
 if (event.target.textContent=="Review") {
   event.preventDefault();
   
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
-  
   
   const product_id = parseInt(event.target.id);
   const rating = parseInt(document.querySelector('#rating').value);

@@ -71,7 +71,7 @@ router.post('/',  (req, res) => {
   
   Wishlist.create({
     // user_id: req.session.user_id,
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
     product_id: req.body.product_id,
     wish_list: req.body.wish_list,
     // date: new Date() <-- don't need as sequelize auto creates
