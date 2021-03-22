@@ -22,4 +22,4 @@ async function deleteRatingHandler(event) {
   }
   
   
-  document.querySelector('.all-reviews').addEventListener('click', deleteRatingHandler)
+  document.querySelector('.all-products').addEventListener('click', deleteRatingHandler)

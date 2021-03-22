@@ -14,7 +14,7 @@ This is a website that displays beauty products and allows to rate, comment and 
 <a href="#questions">Questions</a></br>
 
 ## <span id="installation">Installation</span>
-npm install express sequelize mysql2 express-handlebars dotenv bcrypt connect-session-sequelize express-session 
+npm install express sequelize mysql2 express-handlebars dotenv bcrypt connect-session-sequelize express-session handlebars-paginate express-handlebars-paginate
 npm i node-fetch --save
 Please don't forget to properly set the gitignore file.
 

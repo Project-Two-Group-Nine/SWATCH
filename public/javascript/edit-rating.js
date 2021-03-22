@@ -33,4 +33,4 @@ if (event.target.textContent=="Update") {
 }
 
 
-document.querySelector('.all-reviews').addEventListener('click', editRatingHandler)
+document.querySelector('.all-products').addEventListener('click', editRatingHandler)
