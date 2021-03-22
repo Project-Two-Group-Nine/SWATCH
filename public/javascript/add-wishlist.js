@@ -11,7 +11,6 @@ async function newWishHandler(event) {
     const product_id = event.target.id;
     const date = Date.now();
 
-    console.log( event.target.id)
 
     const response = await fetch(`/api/wishlists`, {
       method: 'POST',
