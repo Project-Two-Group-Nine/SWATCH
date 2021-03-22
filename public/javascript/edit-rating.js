@@ -48,5 +48,5 @@ const showEditForm = (e) => {
   };
 };
 
-document.querySelector('.all-reviews').addEventListener('click', editRatingHandler);
-document.querySelector('.all-reviews').addEventListener('click', showEditForm);
+document.querySelector('.all-products').addEventListener('click', editRatingHandler);
+document.querySelector('.all-products').addEventListener('click', showEditForm);

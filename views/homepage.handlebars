@@ -3,6 +3,7 @@
 
 {{> second-nav}}
 
+
 <section class="section-tertiary">
     <div class="container">
 
@@ -15,11 +16,9 @@
             <div class="col col-md-7 all-products">
 
                 {{#each products as |product|}}
-
                     {{#unless product.featured}}
-                        {{> product-info product}}
-                    {{/unless}}
-
+                            {{> product-info product}}
+                     {{/unless}}
                 {{/each}}
 
             </div>
@@ -129,4 +128,5 @@
 {{#if loggedIn}}
     <script src="/javascript/add-wishlist.js"></script>
     <script src="/javascript/show-modal.js"></script>
+    <script src="/javascript/paginate.js"></script>
 {{/if}}

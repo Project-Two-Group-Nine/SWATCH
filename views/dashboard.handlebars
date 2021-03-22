@@ -1,8 +1,8 @@
-<section class="section-secondary">
+{{!--<section class="section-secondary">
   <div class="container">
 
     <h3>Dashboard</h3>
-     <h6>Review Product</h6>
+      <h6>Review Product</h6>
 
     <div class="row">
 
@@ -28,10 +28,10 @@
       </div>
        
     </div>
-</section>
+</section> --}}
 
 {{#if products.length}}
-<section class="all-reviews">
+<section class="all-products">
   <h3>Your Reviews</h3>
 
     {{#each products as |product|}}
@@ -49,6 +49,6 @@
 
 <script src="/javascript/edit-rating.js"></script>
 <script src="/javascript/delete-rating.js"></script>
-{{!-- <script src="/javascript/add-wishlist.js"></script> --}}
+<script src="/javascript/add-wishlist.js"></script>
 {{/if}}
 
