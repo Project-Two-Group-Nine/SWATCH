@@ -31,6 +31,9 @@ router.get('/', withAuth, (req, res) => {
       include: [
         {
           model: Rating,
+          where: {
+            id : [sequelize.literal(`(SELECT distinct(id) FROM rating WHERE rating.user_id = ${req.session.user_id} group by id)`)]
+          },
           attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
           include: {
             model: User,
@@ -39,6 +42,9 @@ router.get('/', withAuth, (req, res) => {
         },
         {
           model: Wishlist,
+          where: {
+            id : [sequelize.literal(`(SELECT distinct(id) FROM wishlist WHERE wishlist.user_id = ${req.session.user_id} group by id)`)]
+          },
           attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
           include: {
             model: User,
