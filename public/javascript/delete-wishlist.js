@@ -1,4 +1,4 @@
-async function removeWishHandler(event) {
+async function deleteWishHandler(event) {
     
   
   if (event.target.textContent=="Remove") {
@@ -19,5 +19,5 @@ async function removeWishHandler(event) {
 
 }
 
-document.querySelector('.all-wishlists').addEventListener('click', removeWishHandler)
+document.querySelector('.all-wishlists').addEventListener('click', deleteWishHandler)
 

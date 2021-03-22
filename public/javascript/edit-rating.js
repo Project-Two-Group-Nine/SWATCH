@@ -1,20 +1,19 @@
-async function newRatingHandler(event) {
+async function editRatingHandler(event) {
 
-if (event.target.textContent=="Review") {
+if (event.target.textContent=="Update") {
   event.preventDefault();
   
   
-  const product_id = parseInt(event.target.id);
+  const id = parseInt(event.target.id);
   const rating = parseInt(document.querySelector('#rating').value);
   const rating_commentary =document.querySelector('#review').value.trim();
   const date = Date.now();
 
-  
 
-  const response = await fetch(`/api/ratings`, {
-    method: 'POST',
+
+  const response = await fetch(`/api/ratings/${id}`, {
+    method: 'PUT',
     body: JSON.stringify({
-      product_id,
       rating,
       rating_commentary,
       date
@@ -34,4 +33,4 @@ if (event.target.textContent=="Review") {
 }
 
 
-document.querySelector('.modal').addEventListener('click', newRatingHandler)
+document.querySelector('.all-reviews').addEventListener('click', editRatingHandler)
