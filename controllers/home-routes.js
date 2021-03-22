@@ -40,7 +40,8 @@ router.get('/', withAuth, (req, res) => {
             attributes: ['id', 'name', 'email']
           }
         }
-      ]
+      ],
+      limit: 10
     })
     .then(dbProductData => {
       const products = dbProductData.map(product => product.get({ plain: true }));
