@@ -105,7 +105,8 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
   Wishlist.destroy({
     where: {
-      id: req.params.id
+      user_id: req.session.user_id,
+      product_id: req.params.id
     }
   })
     .then(dbWishlistData => {
