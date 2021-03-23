@@ -1167,6 +1167,8 @@ b {
   height: 200px;
   width: 150px;
   margin-bottom: 20px;
+  background: #ffffff;
+  object-fit: cover;
 }
 
 .card-secondary {
