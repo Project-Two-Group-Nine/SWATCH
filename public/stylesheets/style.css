@@ -1366,7 +1366,8 @@ header .scroll-down::before,
   transform: none;
 }
 
-.menu-hover {
+.hover-menu {
+  position: absolute;
   z-index: 5000;
 }
 
