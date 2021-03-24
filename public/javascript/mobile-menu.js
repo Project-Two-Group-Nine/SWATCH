@@ -1,5 +1,7 @@
+const body = document.querySelector('body');
 const menuToggle = document.querySelector('.mobile-menu-toggle');
 const menu = document.querySelector('.mobile-menu');
+const navSecondary = document.querySelector('.nav-secondary');
 
 const toggleMobileMenu = (e) => {
     if (e.target === menuToggle) {
@@ -11,10 +13,6 @@ const toggleMobileMenu = (e) => {
         menu.style.display = 'none';
     }
 }
-
-document.querySelector('body').addEventListener('click', toggleMobileMenu)
-
-const navSecondary = document.querySelector('.nav-secondary');
 
 const showHoverMenu = (e) => {
     if (e.target.classList.contains('hover-link')) {
@@ -32,5 +30,8 @@ const hideHoverMenu = (e) => {
     }
 }
 
+body.addEventListener('click', toggleMobileMenu);
 navSecondary.addEventListener('mouseover', showHoverMenu);
 navSecondary.addEventListener('mouseleave', hideHoverMenu);
+body.addEventListener('click', showHoverMenu);
+body.addEventListener('click', hideHoverMenu);
