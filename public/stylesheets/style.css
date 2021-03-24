@@ -1189,6 +1189,10 @@ b {
   margin-bottom: 5px;
 }
 
+h6 {
+  text-transform: capitalize;
+}
+
 .card-actions {
   display: flex;
   align-items: center;
@@ -1360,6 +1364,10 @@ header .scroll-down::before,
   display: block;
   padding: 10px 30px;
   transform: none;
+}
+
+.menu-hover {
+  z-index: 5000;
 }
 
 .modal-mask {
