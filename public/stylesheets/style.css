@@ -1433,17 +1433,29 @@ nav a,
 }
 
 .nav-secondary {
+  padding: 15px 15px;
+  height: max-content;
   background: #b2dfdb;
 }
 
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .nav-container {
+    padding: 0 30px;
+  }
+}
+@media (min-width: 425px) {
+  .nav-container {
+    justify-content: space-between;
+  }
 }
 
 .nav-logo {
@@ -1481,7 +1493,12 @@ nav a,
 .nav-links a, .nav-links h6, .secondary-nav-links a, .secondary-nav-links h6 {
   display: flex;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 10px;
+}
+@media (min-width: 768px) {
+  .nav-links a, .nav-links h6, .secondary-nav-links a, .secondary-nav-links h6 {
+    padding: 0 30px;
+  }
 }
 .nav-links a:active, .secondary-nav-links a:active {
   color: #80cbc4;
@@ -1504,6 +1521,7 @@ nav a,
   position: relative;
   height: 20px;
   width: 26px;
+  margin-left: 30px;
 }
 @media (min-width: 768px) {
   .mobile-menu-toggle {
