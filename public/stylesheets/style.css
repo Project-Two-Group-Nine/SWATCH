@@ -1368,7 +1368,6 @@ header .scroll-down::before,
 
 .hover-menu {
   position: absolute;
-  z-index: 5000;
 }
 
 .modal-mask {
@@ -1451,30 +1450,40 @@ nav a,
   line-height: 32px;
 }
 
+.secondary-nav-links {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+}
+
 .nav-links {
   display: none;
   list-style: none;
-  margin: 0;
-  height: 100%;
 }
 @media (min-width: 768px) {
   .nav-links {
     display: flex;
   }
 }
-.nav-links li,
-.nav-links a, .nav-links h6 {
+
+.nav-links, .secondary-nav-links {
+  margin: 0;
   height: 100%;
 }
-.nav-links a, .nav-links h6 {
+.nav-links li,
+.nav-links a, .nav-links h6, .secondary-nav-links li,
+.secondary-nav-links a, .secondary-nav-links h6 {
+  height: 100%;
+}
+.nav-links a, .nav-links h6, .secondary-nav-links a, .secondary-nav-links h6 {
   display: flex;
   align-items: center;
   padding: 0 30px;
 }
-.nav-links a:active {
+.nav-links a:active, .secondary-nav-links a:active {
   color: #80cbc4;
 }
-.nav-links a.active {
+.nav-links a.active, .secondary-nav-links a.active {
   border-bottom: 4px solid #80cbc4;
 }
 
