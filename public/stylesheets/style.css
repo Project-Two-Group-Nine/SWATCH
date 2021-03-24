@@ -1160,6 +1160,9 @@ b {
   max-height: 300px;
   overflow: auto;
 }
+.card-text span {
+  font-weight: 100 !important;
+}
 
 .card-left {
   display: flex;
