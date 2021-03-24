@@ -1,19 +1,39 @@
 {{!-- second nav (product categories) --}}
 <nav class="nav-secondary">
     <div class="nav-container">
-        <ul class="nav-links">
-            
+        <ul class="secondary-nav-links">
             <li><a href="/">All</a></li>
-            <li><a href="/products/blush">Blush</a></li>
-            <li><a href="/products/bronzer">Bronzer</a></li>
-            <li><a href="/products/eyebrow">Eyebrow</a></li>
-            <li><a href="/products/eyeliner">Eyeliner</a></li>
-            <li><a href="/products/eyeshadow">Eyeshadow</a></li>
-git a            <li><a href="/products/foundation">Foundation</a></li>
-            <li><a href="/products/lip_liner">Lipliner</a></li>
-            <li><a href="/products/lipstick">Lipstick</a></li>
-            <li><a href="/products/mascara">Mascara</a></li>
-            <li><a href="/products/nail_polish">Nail Polish</a></li>
+            <li>
+                <a class="hover-link">Face</a>
+                <ul class="menu hover-menu" style="display: none;">
+                    <li><a href="/products/foundation">Foundation</a></li>
+                    <li><a href="/products/blush">Blush</a></li>
+                    <li><a href="/products/bronzer">Bronzer</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="hover-link">Lips</a>
+                <ul class="menu hover-menu" style="display: none;">
+
+                    <li><a href="/products/mascara">Mascara</a></li>
+                    <li><a href="/products/eyeliner">Eyeliner</a></li>
+                    <li><a href="/products/eyeshadow">Eyeshadow</a></li>
+                    <li><a href="/products/eyebrow">Eyebrows</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="hover-link">Eyes</a>
+                <ul class="menu hover-menu" style="display: none;">
+                    <li><a href="/products/lipstick">Lipstick</a></li>
+                    <li><a href="/products/lip_liner">Lipliner</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="hover-link">Nails</a>
+                <ul class="menu hover-menu" style="display: none;">
+                    <li><a href="/products/nail_polish">Nail Polish</a></li>
+                </ul>
+            </li>
         </ul>
         <!-- <div class="nav-input">
             <input type="text" name="search-product">
