@@ -1548,6 +1548,11 @@ nav a,
   z-index: 999;
 }
 
+.logo-image {
+  height: 60px;
+  width: auto;
+}
+
 .sidebar {
   padding: 15px;
 }
