@@ -1129,8 +1129,8 @@ b {
   margin: 15px;
   padding: 30px;
   background: #b2dfdb;
-  overflow: hidden;
   border-radius: 5px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1154,6 +1154,11 @@ b {
   display: flex;
   flex-flow: column wrap;
   margin-left: 20px;
+}
+
+.card-text {
+  max-height: 300px;
+  overflow: auto;
 }
 
 .card-left {
