@@ -7,7 +7,9 @@
   <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
   <button class="button-primary button-round show-modal" data-productid={{id}}>Review</button>
   <div class="card-info">
+    <a href="/single-product/{{id}}">
       <h2 class="card-title">{{name}}</h2>
+    </a>
       <h6>Brand: {{brand}}</h6>
       <h6>Price: ${{price}}0</h6>
       <h6>Average Rating: {{trimString int_rating_avg}}</h6>
@@ -25,7 +27,9 @@
     <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
   </div>
   <div class="card-info">
+    <a href="/single-product/{{id}}">
       <h2 class="card-title">{{name}}</h2>
+    </a>
       <h6>Brand: {{brand}}</h6>
       <h6>Price: ${{price}}0</h6>
       <h6>Average Rating: {{trimString int_rating_avg}}</h6>
