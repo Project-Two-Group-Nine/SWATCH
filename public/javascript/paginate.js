@@ -5,7 +5,7 @@ const getPageEl = (text, isActive, destination) => {
     let pageEl = document.createElement('li');
     let pageLink = document.createElement('a');
     pageLink.textContent = text;
-    pageLink.href = '/';
+    pageLink.href = `/?page=${destination}`;
     if (isActive) {
         pageLink.classList.add('active');
     }
@@ -18,41 +18,18 @@ const paginate = (pages) => {
     url = url.split('=');
     let currentPage = url[url.length - 1];
 
-    let nextPageEl = document.createElement('li');
-    let nextPageLink = document.createElement('a');
-    nextPageLink.textContent = "Next";
-    nextPageLink.href = '/';
-    nextPageEl.appendChild(nextPageLink);
-
-    let prevPageEl = document.createElement('li');
-    let prevPageLink = document.createElement('a');
-    prevPageLink.textContent = "Prev";
-    prevPageLink.href = '/';
-    prevPageEl.appendChild(prevPageLink);
-
-    let pageEl = document.createElement('li');
-    let pageLink = document.createElement('a');
-    pageLink.textContent = currentPage;
-    pageLink.classList.add('active');
-    pageLink.href = '/';
-    pageEl.appendChild(pageLink);
-
     if (currentPage === '1') {
-        // pageList.appendChild(pageEl);
-        // pageList.appendChild(nextPageEl);
-        getPageEl('1', true, '/');
-        getPageEl('Next', false, '/');
+        pageList.appendChild(getPageEl('1', true, '1'));
+        pageList.appendChild(getPageEl('Next', false, '2'));
     }
-    else if (curentPage === pageTotal) {
-        // pageList.appendChild(prevPageEl);
-        // pageList.appendChild(pageEl);
-        getPageEl('1', true, '/');
-        getPageEl('Next', false, '/');
+    else if (currentPage === pageTotal) {
+        pageList.appendChild(getPageEl('Prev', false, parseInt(currentPage) - 1));
+        pageList.appendChild(getPageEl(currentPage, true, currentPage));
     }
     else {
-        pageList.appendChild(prevPageEl);
-        pageList.appendChild(pageEl);
-        pageList.appendChild(nextPageEl);
+        pageList.appendChild(getPageEl('Prev', false, parseInt(currentPage) - 1));
+        pageList.appendChild(getPageEl(currentPage, true, currentPage));
+        pageList.appendChild(getPageEl('Next', false, parseInt(currentPage) + 1));
     };
 };
 
