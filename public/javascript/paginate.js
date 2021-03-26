@@ -1,5 +1,5 @@
 const pageList = document.querySelector('.pagination');
-const pageTotal = pageList.dataset.pagetotal;
+const pageTotal = parseInt(pageList.dataset.pagetotal);
 
 const getPageEl = (text, isActive, destination) => {
     let pageEl = document.createElement('li');
@@ -16,24 +16,53 @@ const getPageEl = (text, isActive, destination) => {
 const paginate = (pages) => {
     let url = document.location.href;
     url = url.split('=');
-    let currentPage = url[url.length - 1];
+    let currentPage = parseInt(url[url.length - 1]);
 
-    if (currentPage === '1') {
-        pageList.appendChild(getPageEl('1', true, '1'));
-        pageList.appendChild(getPageEl('Next', false, '2'));
-        pageList.appendChild(getPageEl('Last', false, pageTotal));
+    // page number list elements
+    const firstPageEl = getPageEl('First', false, '1');
+    const prevPageEl = getPageEl('Prev', false, currentPage - 1);
+    const prevTwoPageEl = getPageEl(currentPage - 2, false, currentPage - 2);
+    const prevOnePageEl = getPageEl(currentPage - 1, false, currentPage - 1);
+    const currentPageEl = getPageEl(currentPage, true, currentPage);
+    const nextOnePageEl = getPageEl(currentPage + 1, false, currentPage + 1);
+    const nextTwoPageEl = getPageEl(currentPage + 2, false, currentPage + 2);
+    const nextPageEl = getPageEl('Next', false, currentPage + 1);
+    const lastPageEl = getPageEl('Last', false, pageTotal);
+
+    if (currentPage < 3) {
+        if (currentPage === 2) {
+            pageList.appendChild(firstPageEl);
+            pageList.appendChild(prevPageEl);
+            pageList.appendChild(prevOnePageEl);
+        }
+        pageList.appendChild(currentPageEl);
+        pageList.appendChild(nextOnePageEl);
+        pageList.appendChild(nextTwoPageEl);
+        pageList.appendChild(nextPageEl);
+        pageList.appendChild(lastPageEl);
     }
-    else if (currentPage === pageTotal) {
-        pageList.appendChild(getPageEl('First', false, '1'));
-        pageList.appendChild(getPageEl('Prev', false, parseInt(currentPage) - 1));
-        pageList.appendChild(getPageEl(currentPage, true, currentPage));
+    else if (currentPage > pageTotal - 2) {
+        pageList.appendChild(firstPageEl);
+        pageList.appendChild(prevPageEl);
+        pageList.appendChild(prevTwoPageEl);
+        pageList.appendChild(prevOnePageEl);
+        pageList.appendChild(currentPageEl);
+        if (currentPage === pageTotal - 1) {
+            pageList.appendChild(nextOnePageEl);
+            pageList.appendChild(nextPageEl);
+            pageList.appendChild(lastPageEl);
+        }
     }
     else {
-        pageList.appendChild(getPageEl('First', false, '1'));
-        pageList.appendChild(getPageEl('Prev', false, parseInt(currentPage) - 1));
-        pageList.appendChild(getPageEl(currentPage, true, currentPage));
-        pageList.appendChild(getPageEl('Next', false, parseInt(currentPage) + 1));
-        pageList.appendChild(getPageEl('Last', false, pageTotal));
+        pageList.appendChild(firstPageEl);
+        pageList.appendChild(prevPageEl);
+        pageList.appendChild(prevTwoPageEl);
+        pageList.appendChild(prevOnePageEl);
+        pageList.appendChild(currentPageEl);
+        pageList.appendChild(nextOnePageEl);
+        pageList.appendChild(nextTwoPageEl);
+        pageList.appendChild(nextPageEl);
+        pageList.appendChild(lastPageEl);
     };
 };
 
