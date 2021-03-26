@@ -122,10 +122,34 @@ router.put('/rate', withAuth, (req, res) => {
     });
 });
 
+router.put('/', withAuth, (req, res) => {
+  Product.update(
+    {
+      featured: 0
+    },
+    {
+      where: {
+        featured: 1
+      }
+    }
+  )
+    .then(dbProductData => {
+      if (!dbProductData) {
+        res.status(404).json({ message: 'Error' });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.put('/:id', withAuth, (req, res) => {
   Product.update(
     {
-      name: req.body.name
+      featured: 1
     },
     {
       where: {

@@ -3,8 +3,6 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
-
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -25,6 +23,11 @@ const sess = {
 };
 
 app.use(session(sess));
+
+app.use(function (req, res, next) {
+        res.locals.session = req.session;
+        next();
+    });
 
 const helpers = require('./utils/helpers');
 
