@@ -57,7 +57,7 @@ Product.init(
       type: DataTypes.STRING,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(10,2),
     },
     image_link: {
       type: DataTypes.STRING(500),
