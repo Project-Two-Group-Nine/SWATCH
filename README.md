@@ -19,7 +19,7 @@ npm i node-fetch --save
 Please don't forget to properly set the gitignore file.
 
 ## <span id="usage">Usage</span>
-Use it to view products, rate, comment and add to your wishlist. The database can be reset by using mysql -u root -p  source db/schema.sql. The tables can be reset by using the commands "npm run seeds". In the command line (bash) enter npm start, then go to <a href="">Heroku</a>.
+Use it to view products, rate, comment and add to your wishlist. The database can be reset by using mysql -u root -p  source db/schema.sql. The tables can be reset by using the commands "npm run seeds". In the command line (bash) enter npm start, then go to <a href="https://swatch-makeup-reviews.herokuapp.com/">Heroku</a>.
 
 ## <span id="license">License</span>
 This application is covered under no licence.
@@ -31,5 +31,4 @@ Please feel free to contribute as you see fit.
 Please use <a href="">Heroku</a>.
 
 ## <span id="questions">Questions</span>
-View Project on <a href="">GitHub</a><br>
-For any additional questions, please contact: 
+View Project on <a href="https://github.com/Project-Two-Group-Nine/makeup-review-website.git">GitHub</a><br>
