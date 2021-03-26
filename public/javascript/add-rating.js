@@ -24,7 +24,7 @@ if (event.target.textContent=="Review") {
   if (response.ok) {
     document.location.reload();
   } else {
-    alert("You already rated this product!");
+    alert(response.statusText);
   }
 }
 
