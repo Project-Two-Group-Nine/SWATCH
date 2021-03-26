@@ -1,22 +1,22 @@
 
 {{#if products.length}}
-<section class="all-products">
-  
 
-    {{#each products as |product|}}
-    <article class='card review-card'>
+<section class="section-tertiary all-products">
 
-    {{> product-info product}}
-      {{#each ratings as |rating|}}
-        {{> rating-info2 rating}}
-      {{/each}}
 
-    </article>
-    {{/each}}
+            {{#each products as |product|}}
+              <article class='card review-card'>
+                {{> product-info product}}
+                {{#each ratings as |rating|}}
+                  {{> rating-info2 rating}}
+                {{/each}}
+              </article>
+            {{/each}}
+        
 
 </section>
 
-<script src="/javascript/edit-rating.js"></script>
-<script src="/javascript/delete-rating.js"></script>
+
 <script src="/javascript/add-wishlist.js"></script>
+
 {{/if}}
