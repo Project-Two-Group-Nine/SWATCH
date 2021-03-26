@@ -5,7 +5,7 @@ const { Product } = require('../models');
 // makeup api
 var product_ext =  async function() {
   // format the api url
-  var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.jsonxxxxxxx";
+  var apiUrl ="http://makeup-api.herokuapp.com/api/v1/products.json";
   var data = [];
      // make a request to the url
      await fetch(apiUrl)

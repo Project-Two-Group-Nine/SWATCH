@@ -24,7 +24,7 @@ async function newWishHandler(event) {
     if (response.ok) {
       document.location.reload();
     } else {
-      alert(response.statusText);
+      alert("This product is already in your Wishlist!");
     }
 }
 
