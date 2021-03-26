@@ -72,7 +72,11 @@ router.get('/', withAuth, (req, res) => {
 
 // get filtered products
 router.get('/products/:id', (req, res) => {
-  Product.findAll({
+  let page = 0;
+  if (req.query.page) {
+    page = (req.query.page -1 ) * 11;
+  }
+  Product.findAndCountAll({
     where: {
       Product_type: req.params.id
     },
@@ -90,7 +94,8 @@ router.get('/products/:id', (req, res) => {
       'featured',
       [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
-    limit: 10
+    limit: 10,
+    offset: 10
   })
   .then(dbProductData => {
     const products = dbProductData.map(product => product.get({ plain: true }));
