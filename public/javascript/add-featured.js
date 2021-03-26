@@ -1,7 +1,7 @@
 async function addFeatured() {
   
   const id = Math.floor(Math.random()*10);
-  console.log(id)
+
 
   const response1 = await fetch(`/api/products/`, {
     method: 'PUT',
