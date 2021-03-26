@@ -12,7 +12,12 @@ const fetch = require("node-fetch");
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
-  Product.findAll({
+  let page = 0;
+  if (req.query.page) {
+    page = (req.query.page -1 ) * 11;
+  }
+
+  Product.findAndCountAll({
       attributes: [
         'id',
         'name',
@@ -46,10 +51,12 @@ router.get('/', withAuth, (req, res) => {
           }
         }
       ],
-      limit: 10
+      limit: 10,
+      offset: page
     })
     .then(dbProductData => {
-      const products = dbProductData.map(product => product.get({ plain: true }));
+      console.log(`================== TOTAL ENTRIES ==================\n ${dbProductData.count}`);
+      const products = dbProductData.rows.map(product => product.get({ plain: true }));
       res.render('homepage', {
         products,
         loggedIn: req.session.loggedIn,
