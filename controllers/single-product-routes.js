@@ -8,10 +8,10 @@ const fetch = require("node-fetch");
 
 
 
-// get all products for single product 
+// get all products for single product , withAuth
 
-router.get('/:id', withAuth, (req, res) => {
-  Product.findOne({
+router.get('/:id', (req, res) => {
+  Product.findAll({
     where: {
       id: req.params.id
     },
@@ -46,14 +46,10 @@ router.get('/:id', withAuth, (req, res) => {
       }
     ]
   })
-    .then(dbProductData => {
-      //const products = dbProductData.rows.map(product => product.get({ plain: true }));
-      res.render('single-product', {
-        dbProductData,
-        loggedIn: req.session.loggedIn,
-      }
-      );
-    })
+  .then( dbProductData => {   
+    const products = dbProductData.map(item => item.get({ plain: true }));
+    res.render('single-product', { products, loggedIn: req.session.loggedIn });
+  })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);

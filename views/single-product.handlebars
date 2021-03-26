@@ -1,17 +1,22 @@
-{{modal}}
 
-<section class="section-tertiary">
-    <div class="container">
-        <div class="row all-products">
-            <div class="col col-md-7">          
-                        {{> product-info product}}                 
-            </div>
-        </div>
-    </div>
+{{#if products.length}}
+
+<section class="section-tertiary all-products">
+
+
+            {{#each products as |product|}}
+              <article class='card review-card'>
+                {{> product-info product}}
+                {{#each ratings as |rating|}}
+                  {{> rating-info2 rating}}
+                {{/each}}
+              </article>
+            {{/each}}
+        
+
 </section>
 
-{{#if loggedIn}}
-    <script src="/javascript/add-rating.js"></script>
-    <script src="/javascript/add-wishlist.js"></script>
-    <script src="/javascript/show-modal.js"></script>
+
+<script src="/javascript/add-wishlist.js"></script>
+
 {{/if}}
