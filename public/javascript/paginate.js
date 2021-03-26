@@ -17,6 +17,9 @@ const paginate = (pages) => {
     let url = document.location.href;
     url = url.split('=');
     let currentPage = parseInt(url[url.length - 1]);
+    if (!currentPage) {
+        currentPage = 1;
+    }
 
     // page number list elements
     const firstPageEl = getPageEl('First', false, '1');
