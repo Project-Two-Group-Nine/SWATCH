@@ -38,96 +38,19 @@
         </div>
 
     </div>
+
+{{!-- repalace data-pagetotal with page total from home-routes --}}
+<ul class="pagination" data-pagetotal="10">
+
+</ul>
+
 </section>
 
-{{!-- temp hardcoded to see the layout --}}
-
-{{!-- <section class="section-tertiary">
-    <div class="container">
-        <div class="row">
-            <h3>All Products</h3>
-        </div>
-        <div class="row">
-
-            <div class="col col-md-7">
-
-                <article class="card">
-                    <div class="card-left">
-                        <img class="card-image" src="https://picsum.photos/150/200" />
-                        <button class="button-info button-round add-wishlist">Wishlist</button>
-                    </div>
-                    <div class="card-info">
-                        <h2 class="card-title">Product Name</h2>
-                        <h6>Rating: *****</h6>
-                        <p>This is a product description. Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
-                            mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-                            orci, id ultricies ex.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-left">
-                        <img class="card-image" src="https://picsum.photos/150/200" />
-                        <button class="button-info button-round add-wishlist">Wishlist</button>
-                    </div>
-                    <div class="card-info">
-                        <h2 class="card-title">Product Name</h2>
-                        <h6>Rating: *****</h6>
-                        <p>This is a product description. Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
-                            mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-                            orci, id ultricies ex.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <div class="card-left">
-                        <img class="card-image" src="https://picsum.photos/150/200" />
-                        <button class="button-info button-round add-wishlist">Wishlist</button>
-                    </div>
-                    <div class="card-info">
-                        <h2 class="card-title">Product Name</h2>
-                        <h6>Rating: *****</h6>
-                        <p>This is a product description. Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
-                            mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-                            orci, id ultricies ex.
-                        </p>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="col col-md-5 col-sm-order-1">
-
-                <article class="card card-tertiary card-vertical">
-                    <h2 class="card-title">FEATURED</h2>
-                    <img class="card-image" src="https://picsum.photos/150/200" />
-                    <button class="button-primary button-round add-wishlist">Wishlist</button>
-                    <div class="card-info">
-                        <h2 class="card-title">Product Name</h2>
-                        <h6>Rating: *****</h6>
-                        <p>This is a product description. Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Vestibulum mattis
-                            lacus
-                            in nulla consequat suscipit. Fusce a
-                            mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-                            orci, id ultricies ex.
-                        </p>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </div>
-</section> --}}
 
 {{#if loggedIn}}
     <script src="/javascript/add-rating.js"></script>
     <script src="/javascript/add-wishlist.js"></script>
     <script src="/javascript/show-modal.js"></script>
-    <script src="/javascript/paginate.js"></script>
 {{/if}}
+    
+<script src="/javascript/paginate.js"></script>
