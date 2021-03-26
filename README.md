@@ -2,6 +2,7 @@
 
 ## <span id="description">Description</span>
 This is a website that displays beauty products and allows to rate, comment and add them to a wishlist.
+<img src="./public/images/SWATCH-Site.JPG">
 
 ## <span id="content">Table of Contents</span>
 <a href="#description">Description</a></br>
