@@ -21,15 +21,19 @@ const paginate = (pages) => {
     if (currentPage === '1') {
         pageList.appendChild(getPageEl('1', true, '1'));
         pageList.appendChild(getPageEl('Next', false, '2'));
+        pageList.appendChild(getPageEl('Last', false, pageTotal));
     }
     else if (currentPage === pageTotal) {
+        pageList.appendChild(getPageEl('First', false, '1'));
         pageList.appendChild(getPageEl('Prev', false, parseInt(currentPage) - 1));
         pageList.appendChild(getPageEl(currentPage, true, currentPage));
     }
     else {
+        pageList.appendChild(getPageEl('First', false, '1'));
         pageList.appendChild(getPageEl('Prev', false, parseInt(currentPage) - 1));
         pageList.appendChild(getPageEl(currentPage, true, currentPage));
         pageList.appendChild(getPageEl('Next', false, parseInt(currentPage) + 1));
+        pageList.appendChild(getPageEl('Last', false, pageTotal));
     };
 };
 
