@@ -12,9 +12,12 @@ const fetch = require("node-fetch");
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
+  // page references for returned products
   let page = 0;
+  let pageStart = 0;
   if (req.query.page) {
-    page = (req.query.page -1 ) * 11;
+    page = req.query.page;
+    pageStart = (req.query.page -1 ) * 10;
   }
 
   Product.findAndCountAll({
@@ -52,16 +55,17 @@ router.get('/', withAuth, (req, res) => {
         }
       ],
       limit: 10,
-      offset: page
+      offset: pageStart
     })
     .then(dbProductData => {
-      console.log(`================== TOTAL ENTRIES ==================\n ${dbProductData.count}`);
-      const products = dbProductData.rows.map(product => product.get({ plain: true }));
+      let products = dbProductData.rows.map(product => product.get({ plain: true }));
+      //send total number of pages for frontend pagination
+      products.page_total = Math.floor((dbProductData.count/10) +1);
+      
       res.render('homepage', {
         products,
         loggedIn: req.session.loggedIn,
-      }
-      );
+      });
     })
     .catch(err => {
       console.log(err);
@@ -72,7 +76,15 @@ router.get('/', withAuth, (req, res) => {
 
 // get filtered products
 router.get('/products/:id', (req, res) => {
-  Product.findAll({
+  // page references for returned products
+  let page = 0;
+  let pageStart = 0;
+  if (req.query.page) {
+    page = req.query.page;
+    pageStart = (req.query.page -1 ) * 10;
+  }
+  
+  Product.findAndCountAll({
     where: {
       Product_type: req.params.id
     },
@@ -90,10 +102,16 @@ router.get('/products/:id', (req, res) => {
       'featured',
       [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
-    limit: 10
+    limit: 10,
+    offset: pageStart
   })
   .then(dbProductData => {
-    const products = dbProductData.map(product => product.get({ plain: true }));
+    console.log(`\n+++++++++++++++++++++ Product Total: ${dbProductData.count} +++++++++++++++++++++++++++++\n`)
+    let products = dbProductData.rows.map(product => product.get({ plain: true }));
+    //send total number of pages for frontend pagination
+    products.page_total = Math.floor((dbProductData.count/10) +1);
+    console.log(`\n+++++++++++++++++++++ Page Total: ${products.page_total} +++++++++++++++++++++++++++++\n`)
+
     res.render('homepage', {
       products,
       loggedIn: req.session.loggedIn
@@ -104,6 +122,7 @@ router.get('/products/:id', (req, res) => {
     res.status(500).json(err);
   });
 });
+
 
   ////////login//////
 
