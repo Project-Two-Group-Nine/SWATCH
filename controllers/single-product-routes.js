@@ -25,7 +25,6 @@ router.get('/:id', (req, res) => {
       'description',
       'category',
       'product_type',
-      'featured',
       [sequelize.literal('(SELECT round(Avg(rating),0) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
     include: [

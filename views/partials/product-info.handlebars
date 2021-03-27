@@ -1,4 +1,3 @@
-
 {{#if featured}}
 <article class="card card-tertiary card-vertical">
   <h2 class="card-title">FEATURED</h2>
@@ -12,24 +11,22 @@
     <a href="/single-product/{{id}}">
       <h2 class="card-title">{{name}} <span class="card-subtitle">{{brand}}</span></h2>
     </a>
-      <ul class="tags">
-        <li class="tag tag-teal">
-          $ {{price}}0
-        </li>
+    <ul class="tags">
+      <li class="tag tag-teal">
+        $ {{price}}0
+      </li>
 
-        {{#unless int_rating_avg}}
-        <li class="tag tag-teal">
-          No Rating
-        </li>
-        {{/unless}}
+      {{#if int_rating_avg}}
+      <li class="tag tag-teal">
+        {{trimString int_rating_avg}} <i class="fas fa-star"></i>
+      </li>
+      {{else}}
+      <li class="tag tag-teal">
+        No Rating
+      </li>
+      {{/if}}
 
-        {{#if int_rating_avg}}
-        <li class="tag tag-teal">
-          {{trimString int_rating_avg}} <i class="fas fa-star"></i>
-        </li>
-        {{/if}}
-        
-      </ul>
+    </ul>
     <div class="card-text">
       <p>{{{description}}}</p>
     </div>
@@ -39,7 +36,7 @@
 <article class="card">
   <div class="card-left">
     {{!-- replace with product img url --}}
-    <img class="card-image" src={{image_link}} onError="this.onerror=null; this.src='/images/default-img.png'"  />
+    <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
     <div class="card-actions">
       <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
       <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
@@ -53,16 +50,17 @@
       <li class="tag">
         $ {{price}}0
       </li>
-      {{#unless int_rating_avg}}
-      <li class="tag">
-        No Rating
-      </li>
-      {{/unless}}
+
       {{#if int_rating_avg}}
       <li class="tag">
         {{trimString int_rating_avg}} <i class="fas fa-star"></i>
       </li>
+      {{else}}
+      <li class="tag">
+        No Rating
+      </li>
       {{/if}}
+      
     </ul>
     <div class="card-text">
       <p>{{{description}}}</p>
@@ -70,8 +68,3 @@
   </div>
 </article>
 {{/if}}
-
-
-    
-
-
