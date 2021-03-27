@@ -1402,8 +1402,10 @@ header .scroll-down::before,
 }
 
 .hover-menu {
+  display: none;
   position: absolute;
   top: 100%;
+  z-index: 999;
 }
 
 .mobile-menu {
@@ -1474,8 +1476,8 @@ nav a,
 }
 
 .nav-secondary {
-  padding: 15px 15px;
-  height: max-content;
+  padding: 0 15px;
+  height: 60px;
   background: #b2dfdb;
   position: relative;
 }
@@ -1511,6 +1513,13 @@ nav a,
   display: flex;
   flex-flow: row wrap;
   list-style: none;
+  height: 100%;
+}
+.secondary-nav-links li:hover ul.hover-menu {
+  display: block;
+}
+.secondary-nav-links li ul.hover-menu li {
+  display: block;
 }
 
 .nav-links {
