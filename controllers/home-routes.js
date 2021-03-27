@@ -12,6 +12,7 @@ const fetch = require("node-fetch");
 router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
+  // page references for returned products
   let page = 0;
   let pageStart = 0;
   if (req.query.page) {
@@ -57,13 +58,8 @@ router.get('/', withAuth, (req, res) => {
       offset: pageStart
     })
     .then(dbProductData => {
-      /* pages.currentPage = page;
-      pages.prevPage = page - 1;
-      pages.nextPage = page + 1;
-      pages.lastPage = Math.floor((dbProductData.count/10) +1);
-      */
-      
       let products = dbProductData.rows.map(product => product.get({ plain: true }));
+      //send total number of pages for frontend pagination
       products.page_total = Math.floor((dbProductData.count/10) +1);
       
       res.render('homepage', {
@@ -80,11 +76,15 @@ router.get('/', withAuth, (req, res) => {
 
 // get filtered products
 router.get('/products/:id', (req, res) => {
+  // page references for returned products
   let page = 0;
+  let pageStart = 0;
   if (req.query.page) {
-    page = (req.query.page -1 ) * 10;
+    page = req.query.page;
+    pageStart = (req.query.page -1 ) * 10;
   }
-  Product.findAndCountAll({
+  
+  Product.findAll({
     where: {
       Product_type: req.params.id
     },
@@ -103,10 +103,12 @@ router.get('/products/:id', (req, res) => {
       [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
     limit: 10,
-    offset: 10
+    offset: pageStart
   })
   .then(dbProductData => {
-    const products = dbProductData.map(product => product.get({ plain: true }));
+    let products = dbProductData.map(product => product.get({ plain: true }));
+      //send total number of pages for frontend pagination
+      products.page_total = Math.floor((dbProductData.count/10) +1);
     res.render('homepage', {
       products,
       loggedIn: req.session.loggedIn
@@ -117,6 +119,7 @@ router.get('/products/:id', (req, res) => {
     res.status(500).json(err);
   });
 });
+
 
   ////////login//////
 
