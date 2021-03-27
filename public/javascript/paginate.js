@@ -2,12 +2,6 @@ const pageList = document.querySelector('.pagination');
 const pageTotal = parseInt(pageList.dataset.pagetotal);
 console.log(pageTotal);
 
-/*
-const category = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
-*/
-
 // construct url to allow pagination for product category routes '/:id'
 const constructUrl = () => {
     const currentUrlArray = window.location.toString().split('/');
