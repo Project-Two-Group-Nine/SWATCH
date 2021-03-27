@@ -1,10 +1,10 @@
 <div class="col col-md-4 col-lg-3">
 
 <article class="card card-vertical">
-    <a href="/products/{{id}}">
+    <a href="/single-product/{{id}}">
         <h2 class="card-title">{{name}}</h2>
     </a>
-    <img class="card-image" src={{image_link}} />
+    <img class="card-image" onError="this.onerror=null; this.src='/images/default-image.png'" src={{image_link}} />
     <p>{{{description}}}</p>
     <button class="button-info button-round remove-wishlist" id={{id}}>Remove</button>
 </article>

@@ -1,76 +1,22 @@
-{{modal}}
 
-{{!-- <section class="section-secondary">
-  {{> product-info product}}
+{{#if products.length}}
+
+<section class="section-tertiary all-products">
+
+
+            {{#each products as |product|}}
+              <article class='card review-card'>
+                {{> product-info product}}
+                {{#each ratings as |rating|}}
+                  {{> rating-info2 rating}}
+                {{/each}}
+              </article>
+            {{/each}}
+        
+
 </section>
 
-<section>
-  <div class="container container-large">
-    <div class="row">
-      <h2>Reviews</h2>
-    </div>
 
-    <div class="row">
-      {{#each ratings}}
-        {{> rating-info product}}
-      {{/each}}
-    </div>
-  </div>
-</section> --}}
+<script src="/javascript/add-wishlist.js"></script>
 
-{{!-- temp hardcoded to see layout --}}
-
-<section>
-  <div class="container container-large">
-    <div class="row">
-      <h2>Reviews</h2>
-    </div>
-
-    <div class="row">
-
-
-      <div class="col">
-        <article class="card">
-          <div class="card-info">
-            <h2 class="card-title">Rating: 4 by username on 21/1/21</h2>
-            <p>This is a review. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
-              mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-              orci, id ultricies ex.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="col">
-        <article class="card">
-          <div class="card-info">
-            <h2 class="card-title">Rating: 4 by username on 21/1/21</h2>
-            <p>This is a review. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
-              mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-              orci, id ultricies ex.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="col">
-        <article class="card">
-          <div class="card-info">
-            <h2 class="card-title">Rating: 4 by username on 21/1/21</h2>
-            <p>This is a review. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Vestibulum mattis lacus in nulla consequat suscipit. Fusce a
-              mauris facilisis, ultrices mauris vitae, ultricies mi. Pellentesque in ullamcorper
-              orci, id ultricies ex.</p>
-          </div>
-        </article>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-{{#if loggedIn}}
-<script src="/javascript/rate.js"></script>
-<script src="javascript/show-modal.js"></script>
 {{/if}}

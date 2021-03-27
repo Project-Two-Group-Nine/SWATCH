@@ -2,8 +2,12 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-
-
+const Handlebars = require('handlebars');
+Handlebars.registerHelper('trimString', function(passedString) {
+  var theString = passedString
+  if (passedString) {theString= passedString.substring(0,1);}
+  return new Handlebars.SafeString(theString)
+});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,6 +29,11 @@ const sess = {
 };
 
 app.use(session(sess));
+
+app.use(function (req, res, next) {
+        res.locals.session = req.session;
+        next();
+    });
 
 const helpers = require('./utils/helpers');
 

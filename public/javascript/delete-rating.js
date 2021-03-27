@@ -5,7 +5,6 @@ async function deleteRatingHandler(event) {
     
     const id = parseInt(event.target.dataset.ratingid);
 
-    console.log(id);
   
     const response = await fetch(`/api/ratings/${id}`, {
       method: 'DELETE'

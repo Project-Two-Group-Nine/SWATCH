@@ -16,14 +16,12 @@ const toggleMobileMenu = (e) => {
 
 const showHoverMenu = (e) => {
     if (e.target.classList.contains('hover-link')) {
-        console.log('hovered!');
         const hoverMenu = e.target.nextElementSibling;
         hoverMenu.style.display = 'block';
     }
 }
 
 const hideHoverMenu = (e) => {
-    console.log('unhovered!');
     const hoverMenus = document.getElementsByClassName('hover-menu');
     for (let i = 0; i < hoverMenus.length; i++) {
         hoverMenus[i].style.display = 'none';

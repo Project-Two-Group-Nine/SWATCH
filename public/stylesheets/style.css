@@ -1559,6 +1559,33 @@ nav a,
   width: auto;
 }
 
+.pagination {
+  display: flex;
+  list-style: none;
+  margin: 15px 0;
+}
+.pagination li {
+  margin: 0 5px;
+}
+.pagination li a {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+.pagination li a.active, .pagination li a:focus, .pagination li a:hover {
+  opacity: 1;
+  border-color: #80cbc4;
+}
+.pagination li a.active {
+  background: #80cbc4;
+  color: #ffffff;
+}
+.pagination li a:active {
+  transform: scale(0.95);
+}
+
 .sidebar {
   padding: 15px;
 }
