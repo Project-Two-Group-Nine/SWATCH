@@ -1403,6 +1403,7 @@ header .scroll-down::before,
 
 .hover-menu {
   position: absolute;
+  top: 100%;
 }
 
 .modal-mask {
@@ -1469,6 +1470,7 @@ nav a,
   padding: 15px 15px;
   height: max-content;
   background: #b2dfdb;
+  position: relative;
 }
 
 .nav-container {
