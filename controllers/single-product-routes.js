@@ -19,6 +19,7 @@ router.get('/:id', (req, res) => {
       'id',
       'name',
       'api_id',
+      'image_link',
       'brand',
       'price',
       'rating',
