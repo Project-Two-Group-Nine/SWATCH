@@ -1,11 +1,35 @@
 const pageList = document.querySelector('.pagination');
 const pageTotal = parseInt(pageList.dataset.pagetotal);
+console.log(pageTotal);
+
+/*
+const category = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
+*/
+
+// construct url to allow pagination for product category routes '/:id'
+const constructUrl = () => {
+    const currentUrlArray = window.location.toString().split('/');
+    let baseUrl = '';
+    if (currentUrlArray[currentUrlArray.length - 2] === 'products') {
+        let category  = currentUrlArray[currentUrlArray.length - 1];
+        category = category.split('?')[0];
+        baseUrl = `/products/${category}`;
+    }
+    else {
+        baseUrl = '/';
+    }
+    return baseUrl;
+}
 
 const getPageEl = (text, isActive, destination) => {
+    
     let pageEl = document.createElement('li');
     let pageLink = document.createElement('a');
+    let baseUrl = constructUrl();
     pageLink.textContent = text;
-    pageLink.href = `/?page=${destination}`;
+    pageLink.href = `${baseUrl}?page=${destination}`;
     if (isActive) {
         pageLink.classList.add('active');
     }

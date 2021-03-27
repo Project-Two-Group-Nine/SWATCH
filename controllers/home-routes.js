@@ -84,7 +84,7 @@ router.get('/products/:id', (req, res) => {
     pageStart = (req.query.page -1 ) * 10;
   }
   
-  Product.findAll({
+  Product.findAndCountAll({
     where: {
       Product_type: req.params.id
     },
@@ -106,9 +106,12 @@ router.get('/products/:id', (req, res) => {
     offset: pageStart
   })
   .then(dbProductData => {
-    let products = dbProductData.map(product => product.get({ plain: true }));
-      //send total number of pages for frontend pagination
-      products.page_total = Math.floor((dbProductData.count/10) +1);
+    console.log(`\n+++++++++++++++++++++ Product Total: ${dbProductData.count} +++++++++++++++++++++++++++++\n`)
+    let products = dbProductData.rows.map(product => product.get({ plain: true }));
+    //send total number of pages for frontend pagination
+    products.page_total = Math.floor((dbProductData.count/10) +1);
+    console.log(`\n+++++++++++++++++++++ Page Total: ${products.page_total} +++++++++++++++++++++++++++++\n`)
+
     res.render('homepage', {
       products,
       loggedIn: req.session.loggedIn
