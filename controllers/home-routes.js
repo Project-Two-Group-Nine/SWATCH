@@ -13,9 +13,12 @@ router.get('/', withAuth, (req, res) => {
   console.log(req.session);
   console.log('======================');
   let page = 0;
+  let pageStart = 0;
   if (req.query.page) {
-    page = (req.query.page -1 ) * 11;
+    page = req.query.page;
+    pageStart = (req.query.page -1 ) * 10;
   }
+  let pages = {};
 
   Product.findAndCountAll({
       attributes: [
@@ -52,14 +55,18 @@ router.get('/', withAuth, (req, res) => {
         }
       ],
       limit: 10,
-      offset: page
+      offset: pageStart
     })
-    .then(dbProductData => {
-      console.log(`================== TOTAL ENTRIES ==================\n ${dbProductData.count}`);
+    .then(dbProductData => {console.log(`================== TOTAL ENTRIES ==================\n ${dbProductData.count}`);
+      pages.currentPage = page;
+      pages.prevPage = page - 1;
+      pages.nextPage = page + 1;
+      pages.lastPage = Math.floor((dbProductData.count/10) +1);
       const products = dbProductData.rows.map(product => product.get({ plain: true }));
       res.render('homepage', {
         products,
         loggedIn: req.session.loggedIn,
+        pages
       }
       );
     })
@@ -74,7 +81,7 @@ router.get('/', withAuth, (req, res) => {
 router.get('/products/:id', (req, res) => {
   let page = 0;
   if (req.query.page) {
-    page = (req.query.page -1 ) * 11;
+    page = (req.query.page -1 ) * 10;
   }
   Product.findAndCountAll({
     where: {
