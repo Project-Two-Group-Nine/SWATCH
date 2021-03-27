@@ -1406,6 +1406,13 @@ header .scroll-down::before,
   top: 100%;
 }
 
+.mobile-menu {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .modal-mask {
   position: fixed;
   top: 0;
@@ -1576,10 +1583,6 @@ nav a,
   background: #424242;
   border-radius: 4px;
   box-shadow: 0 8px 0 0 #424242, 0 16px 0 0 #424242;
-}
-
-.mobile-menu {
-  z-index: 999;
 }
 
 .logo-image {
