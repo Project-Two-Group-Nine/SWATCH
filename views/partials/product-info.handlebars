@@ -3,16 +3,23 @@
 <article class="card card-tertiary card-vertical">
   <h2 class="card-title">FEATURED</h2>
   {{!-- replace with product img url --}}
-  <img class="card-image" onError="this.onerror=null; this.src='/images/default-image.png'" src={{image_link}} />
-  <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
-  <button class="button-primary button-round show-modal" data-productid={{id}}>Review</button>
+  <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
+  <div class="card-actions">
+    <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+    <button class="button-primary button-round show-modal" data-productid={{id}}>Review</button>
+  </div>
   <div class="card-info">
     <a href="/single-product/{{id}}">
-      <h2 class="card-title">{{name}}</h2>
+      <h2 class="card-title">{{name}} <span class="card-subtitle">{{brand}}</span></h2>
     </a>
-      <h6>Brand: {{brand}}</h6>
-      <h6>Price: ${{price}}0</h6>
-      <h6>Average Rating: {{trimString int_rating_avg}}</h6>
+      <ul class="tags">
+        <li class="tag tag-teal">
+          $ {{price}}0
+        </li>
+        <li class="tag tag-teal">
+          {{trimString int_rating_avg}} <i class="fas fa-star"></i>
+        </li>
+      </ul>
     <div class="card-text">
       <p>{{{description}}}</p>
     </div>
@@ -23,16 +30,23 @@
   <div class="card-left">
     {{!-- replace with product img url --}}
     <img class="card-image" src={{image_link}} onError="this.onerror=null; this.src='/images/default-img.png'"  />
-    <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
-    <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
+    <div class="card-actions">
+      <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+      <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
+    </div>
   </div>
   <div class="card-info">
     <a href="/single-product/{{id}}">
-      <h2 class="card-title">{{name}}</h2>
+      <h2 class="card-title">{{name}} <span class="card-subtitle">{{brand}}</span></h2>
     </a>
-      <h6>Brand: {{brand}}</h6>
-      <h6>Price: ${{price}}0</h6>
-      <h6>Average Rating: {{trimString int_rating_avg}}</h6>
+    <ul class="tags">
+      <li class="tag">
+        $ {{price}}0
+      </li>
+      <li class="tag">
+        {{trimString int_rating_avg}} <i class="fas fa-star"></i>
+      </li>
+    </ul>
     <div class="card-text">
       <p>{{{description}}}</p>
     </div>
