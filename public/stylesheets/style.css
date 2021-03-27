@@ -1085,7 +1085,7 @@ h1 {
 .h2,
 h2 {
   font-size: 40px;
-  line-height: 52px;
+  line-height: 32px;
 }
 
 .h3,
@@ -1155,6 +1155,9 @@ b {
   align-items: center;
   justify-content: center;
 }
+.card-vertical .card-actions {
+  flex-direction: row;
+}
 
 .card-info {
   display: flex;
@@ -1195,22 +1198,33 @@ b {
 
 .card-title {
   font-size: 24px;
+  text-transform: capitalize;
   margin-bottom: 5px;
 }
 
-h6 {
-  text-transform: capitalize;
+.card-subtitle {
+  font-weight: lighter;
+  font-size: smaller;
+  font-style: italic;
+  text-transform: uppercase;
 }
 
 .card-actions {
   display: flex;
   align-items: center;
-  margin-top: 30px;
   list-style: none;
   justify-content: space-around;
 }
 .card-actions > * {
   margin-bottom: 0;
+}
+.card-actions button {
+  margin: 0 5px 10px 5px;
+}
+@media (min-width: 768px) {
+  .card-actions {
+    flex-direction: column;
+  }
 }
 
 .footer,
@@ -1586,40 +1600,39 @@ nav a,
   transform: scale(0.95);
 }
 
-.sidebar {
-  padding: 15px;
-}
-
-.sidebar-left {
-  border-right: 1px solid #e0e0e0;
-}
-
-.sidebar-right {
-  border-left: 1px solid #e0e0e0;
-}
-
-.sidebar-category {
-  padding: 10px;
-  font-size: 18px;
-  color: #757575;
-  border-bottom: 1px solid #e0e0e0;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path d="M9.4 3.6l5.1 6.9L19.5 3.6" fill="#bdbdbd"/></svg>') center right no-repeat;
-}
-.sidebar-category:focus, .sidebar-category:hover {
-  cursor: pointer;
-  opacity: 0.75;
-}
-
-.sidebar-links {
+.tags {
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  padding-left: 10px;
+  margin-top: 5px;
 }
-.sidebar-links a {
+.tags .tag {
+  margin-right: 5px;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  color: #ffffff;
+  background: #9fa8da;
+}
+.tags .tag a {
   display: block;
-  padding: 5px 10px;
+  color: #ffffff;
 }
-.sidebar-links a.active {
-  font-weight: 700;
+.tags .tag-rounded {
+  border-radius: 16px;
+}
+.tags .tag-teal {
+  background: #80cbc4;
+}
+.tags .tag-red {
+  background: #f44336;
+}
+.tags .tag-green {
+  background: #4caf50;
+}
+.tags .tag-orange {
+  background: #ff9800;
 }
 
 /*# sourceMappingURL=style.css.map */
