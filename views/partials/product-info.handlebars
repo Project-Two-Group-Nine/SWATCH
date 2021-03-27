@@ -16,16 +16,19 @@
         <li class="tag tag-teal">
           $ {{price}}0
         </li>
+
         {{#unless int_rating_avg}}
         <li class="tag tag-teal">
           No Rating
         </li>
         {{/unless}}
+
         {{#if int_rating_avg}}
         <li class="tag tag-teal">
           {{trimString int_rating_avg}} <i class="fas fa-star"></i>
         </li>
-      {{/if}}
+        {{/if}}
+        
       </ul>
     <div class="card-text">
       <p>{{{description}}}</p>
