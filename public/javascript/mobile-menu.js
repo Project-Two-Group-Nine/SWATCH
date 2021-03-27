@@ -1,7 +1,6 @@
 const body = document.querySelector('body');
 const menuToggle = document.querySelector('.mobile-menu-toggle');
 const menu = document.querySelector('.mobile-menu');
-const navSecondary = document.querySelector('.nav-secondary');
 
 const toggleMobileMenu = (e) => {
     if (e.target === menuToggle) {
