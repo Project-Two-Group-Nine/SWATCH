@@ -1402,7 +1402,17 @@ header .scroll-down::before,
 }
 
 .hover-menu {
+  display: none;
   position: absolute;
+  top: 100%;
+  z-index: 999;
+}
+
+.mobile-menu {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .modal-mask {
@@ -1466,9 +1476,10 @@ nav a,
 }
 
 .nav-secondary {
-  padding: 15px 15px;
-  height: max-content;
+  padding: 0 15px;
+  height: 60px;
   background: #b2dfdb;
+  position: relative;
 }
 
 .nav-container {
@@ -1502,6 +1513,13 @@ nav a,
   display: flex;
   flex-flow: row wrap;
   list-style: none;
+  height: 100%;
+}
+.secondary-nav-links li:hover ul.hover-menu {
+  display: block;
+}
+.secondary-nav-links li ul.hover-menu li {
+  display: block;
 }
 
 .nav-links {
@@ -1574,10 +1592,6 @@ nav a,
   background: #424242;
   border-radius: 4px;
   box-shadow: 0 8px 0 0 #424242, 0 16px 0 0 #424242;
-}
-
-.mobile-menu {
-  z-index: 999;
 }
 
 .logo-image {
