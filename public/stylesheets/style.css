@@ -738,31 +738,15 @@ input[type=submit]:active {
   opacity: 1;
   transform: scale(1);
 }
-.button:disabled .button.disabled,
-.button:disabled button.disabled,
-.button:disabled input[type=button].disabled,
-.button:disabled input[type=reset].disabled,
-.button:disabled input[type=submit].disabled,
-button:disabled .button.disabled,
-button:disabled button.disabled,
-button:disabled input[type=button].disabled,
-button:disabled input[type=reset].disabled,
-button:disabled input[type=submit].disabled,
-input[type=button]:disabled .button.disabled,
-input[type=button]:disabled button.disabled,
-input[type=button]:disabled input[type=button].disabled,
-input[type=button]:disabled input[type=reset].disabled,
-input[type=button]:disabled input[type=submit].disabled,
-input[type=reset]:disabled .button.disabled,
-input[type=reset]:disabled button.disabled,
-input[type=reset]:disabled input[type=button].disabled,
-input[type=reset]:disabled input[type=reset].disabled,
-input[type=reset]:disabled input[type=submit].disabled,
-input[type=submit]:disabled .button.disabled,
-input[type=submit]:disabled button.disabled,
-input[type=submit]:disabled input[type=button].disabled,
-input[type=submit]:disabled input[type=reset].disabled,
-input[type=submit]:disabled input[type=submit].disabled {
+.button:disabled, .button.disabled,
+button:disabled,
+button.disabled,
+input[type=button]:disabled,
+input[type=button].disabled,
+input[type=reset]:disabled,
+input[type=reset].disabled,
+input[type=submit]:disabled,
+input[type=submit].disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

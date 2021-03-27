@@ -60,7 +60,7 @@ router.get('/', withAuth, (req, res) => {
     .then(dbProductData => {
       let products = dbProductData.rows.map(product => product.get({ plain: true }));
       //send total number of pages for frontend pagination
-      products.page_total = Math.floor((dbProductData.count/10) +1);
+      products.page_total = Math.ceil(dbProductData.count/10);
       
       res.render('homepage', {
         products,
