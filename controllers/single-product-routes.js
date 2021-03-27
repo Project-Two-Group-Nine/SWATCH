@@ -22,6 +22,7 @@ router.get('/:id', (req, res) => {
       'brand',
       'price',
       'rating',
+      'description',
       'category',
       'product_type',
       'featured',

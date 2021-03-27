@@ -1,7 +1,21 @@
-
 {{#if products.length}}
 
-<section class="section-tertiary all-products">
+<section class="section-secondary">
+  {{#each products as |product|}}
+
+    {{> product-info product}}
+
+
+</section>
+
+<section>
+  {{#each ratings as |rating|}}
+    {{> rating-info rating}}
+  {{/each}}
+  {{/each}}
+</section>
+
+{{!-- <section class="section-tertiary all-products">
 
 
             {{#each products as |product|}}
@@ -14,7 +28,7 @@
             {{/each}}
         
 
-</section>
+</section> --}}
 
 
 <script src="/javascript/add-wishlist.js"></script>
