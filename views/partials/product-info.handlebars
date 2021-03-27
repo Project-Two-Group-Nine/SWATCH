@@ -22,7 +22,7 @@
 <article class="card">
   <div class="card-left">
     {{!-- replace with product img url --}}
-    <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
+    <img class="card-image" src={{image_link}} onError="this.onerror=null; this.src='/images/default-img.png'"  />
     <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
     <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
   </div>
