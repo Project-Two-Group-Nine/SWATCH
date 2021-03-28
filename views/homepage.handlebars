@@ -1,8 +1,6 @@
 {{> modal}}
 
-
 {{> second-nav}}
-
 
 <section class="section-tertiary">
     <div class="container">
@@ -31,16 +29,11 @@
 
     </div>
 
-{{!-- replace data-pagetotal with page total from home-routes --}}
-<ul class="pagination" data-pagetotal="{{products.page_total}}">
-
-</ul>
+<ul class="pagination" data-pagetotal="{{products.page_total}}"></ul>
 
 </section>
 
-
 {{#if loggedIn}}
-  
     <script src="/javascript/add-wishlist.js"></script>
     <script src="/javascript/show-modal.js"></script>
     <script src="/javascript/add-featured.js"></script>
