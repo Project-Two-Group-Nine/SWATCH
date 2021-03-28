@@ -1,5 +1,87 @@
-<article class="product">
-  <div class="title">
-    <a href="/products/{{id}}">{{name}}</a>
+{{#if featured}}
+<article class="card card-tertiary card-vertical">
+  <h2 class="card-title">FEATURED</h2>
+  {{!-- replace with product img url --}}
+  <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
+  <div class="card-actions">
+    {{#if wished}}
+      <button class="button-primary button-round disabled">On Wishlist</button>
+    {{else}}
+      <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+    {{/if}}
+    {{#if rated}}
+      <button class="button-primary button-round disabled">Reviewed</button>
+    {{else}}
+      <button class="button-primary button-round show-modal" data-productid={{id}}>Review</button>
+    {{/if}}
+  </div>
+  <div class="card-info">
+    <a href="/single-product/{{id}}">
+      <h2 class="card-title">{{name}} <span class="card-subtitle">{{brand}}</span></h2>
+    </a>
+    <ul class="tags">
+      <li class="tag tag-teal">
+        $ {{price}}0
+      </li>
+
+      {{#if int_rating_avg}}
+      <li class="tag tag-teal">
+        {{trimString int_rating_avg}} <i class="fas fa-star"></i>
+      </li>
+      {{else}}
+      <li class="tag tag-teal">
+        No Rating
+      </li>
+      {{/if}}
+
+    </ul>
+    <div class="card-text">
+      <p>{{{description}}}</p>
+    </div>
   </div>
 </article>
+{{else}}
+<article class="card">
+  <div class="card-left">
+    {{!-- replace with product img url --}}
+    <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
+    <div class="card-actions">
+      {{#if wished}}
+        <button class="button-info button-round disabled">On Wishlist</button>
+      {{else}}
+        <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+      {{/if}}
+
+      {{#if rated}}
+        <button class="button-info button-round disabled">Reviewed</button>
+      {{else}}
+        <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
+      {{/if}}
+    </div>
+  </div>
+  <div class="card-info">
+    <a href="/single-product/{{id}}">
+      <h2 class="card-title">{{name}} <span class="card-subtitle">{{brand}}</span></h2>
+    </a>
+    <ul class="tags">
+      <li class="tag">
+        $ {{price}}0
+      </li>
+
+      {{#if int_rating_avg}}
+      <li class="tag">
+        {{trimString int_rating_avg}} <i class="fas fa-star"></i>
+      </li>
+      {{else}}
+      <li class="tag">
+        No Rating
+      </li>
+      {{/if}}
+      
+    </ul>
+    <div class="card-text">
+      <p>{{{description}}}</p>
+    </div>
+  </div>
+</article>
+{{/if}}

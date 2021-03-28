@@ -1,0 +1,24 @@
+
+{{#if products.length}}
+<section>
+
+  <div class="container container-large all-wishlists">
+
+    <div class="row">
+      <h3>Your Wishlist</h3>
+    </div>
+
+    <div class="row">
+
+    {{#each products as |product|}}
+      {{> wishlist-items product}}
+    {{/each}}
+
+    </div>
+  </div>
+</section>
+<script src="/javascript/delete-wishlist.js"></script>
+{{/if}}
+
+
+

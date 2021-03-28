@@ -1,28 +1,21 @@
-<section>
-  <h2>Create New Comment</h2>
-
-  <form class="new-comment-form">
-    <div>
-      <label for="comment">Comment</label>
-      <input type="text" id="comment" name="comment" />
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-</section>
 
 {{#if products.length}}
-<section>
-  <h2>Your Products</h2>
-  <ol>
+<section class="all-products">
+  <h3>Your Reviews</h3>
+
     {{#each products as |product|}}
-    <li>
+      <article class='card review-card'>
       {{> product-info product}}
-      </br>
-      <a href="/dashboard/edit/{{product.id}}" class="edit-link">Edit product</a>
-    </li>
+        {{#each ratings as |rating|}}
+          {{> your-rating-info rating}}
+        {{/each}}
+      </article>
     {{/each}}
-  </ol>
+
 </section>
+
+<script src="/javascript/edit-rating.js"></script>
+<script src="/javascript/delete-rating.js"></script>
+<script src="/javascript/add-wishlist.js"></script>
 {{/if}}
 
-<script src="/javascript/add-comment.js"></script>

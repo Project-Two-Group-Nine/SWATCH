@@ -1,51 +1,72 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Product, Comment, Rating, Wishlist } = require('../models');
 
-// get all products for homepage
-router.get('/', (req, res) => {
+const { User, Product,  Rating, Wishlist } = require('../models');
+const withAuth = require('../utils/auth');
+
+const fetch = require("node-fetch");
+
+
+
+// get all products for home
+router.get('/', withAuth, (req, res) => {
+  console.log(req.session);
   console.log('======================');
-  Product.findAll({
-    attributes: [
-      'id',
-      'name',
-      'api_id',
-      'featured',
-      [sequelize.literal('(SELECT AVG(rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
-        include: {
-          model: User,
-          attributes: ['id', 'name', 'email']
-        }
-      },
-      {
-        model: Rating,
-        attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
-        include: {
-          model: User,
-          attributes: ['id', 'name', 'email']
-        }
-      },
-      {
-        model: Wishlist,
-        attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
-        include: {
-          model: User,
-          attributes: ['id', 'name', 'email']
-        }
-      }
-    ]
-  })
-    .then(dbProductData => {
-      const products = dbProductData.map(product => product.get({ plain: true }));
+  // page references for returned products
+  let page = 0;
+  let pageStart = 0;
+  if (req.query.page) {
+    page = req.query.page;
+    pageStart = (req.query.page -1 ) * 10;
+  }
 
+  Product.findAndCountAll({
+      attributes: [
+        'id',
+        'name',
+        'api_id',
+        'image_link',
+        'description',
+        'brand',
+        'price',
+        'rating',
+        'category',
+        'product_type',
+        'featured',
+        [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg'],
+        [sequelize.literal(`(Select case when ${req.session.user_id} in (select rating.user_id from rating where product.id = rating.product_id) then 1 else 0 end  )`), 'rated'],
+        [sequelize.literal(`(Select case when ${req.session.user_id} in (select wishlist.user_id from wishlist where product.id = wishlist.product_id) then 1 else 0 end  )`), 'wished']
+      ],
+      include: [
+    
+        {
+          model: Rating,
+          attributes: ['id', 'user_id', 'product_id', 'rating', 'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
+          }
+        },
+        {
+          model: Wishlist,
+          attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
+          include: {
+            model: User,
+            attributes: ['id', 'name', 'email']
+          }
+        }
+      ],
+      limit: 10,
+      offset: pageStart
+    })
+    .then(dbProductData => {
+      let products = dbProductData.rows.map(product => product.get({ plain: true }));
+      //send total number of pages for frontend pagination
+      products.page_total = Math.floor((dbProductData.count/10) +1);
+      
       res.render('homepage', {
         products,
-        loggedIn: req.session.loggedIn
+        loggedIn: req.session.loggedIn,
       });
     })
     .catch(err => {
@@ -54,66 +75,62 @@ router.get('/', (req, res) => {
     });
 });
 
-// get single product
+
+// get filtered products
 router.get('/products/:id', (req, res) => {
-  Product.findOne({
+  // page references for returned products
+  let page = 0;
+  let pageStart = 0;
+  if (req.query.page) {
+    page = req.query.page;
+    pageStart = (req.query.page -1 ) * 10;
+  }
+  
+  Product.findAndCountAll({
     where: {
-      id: req.params.id
+      Product_type: req.params.id
     },
     attributes: [
       'id',
       'name',
       'api_id',
+      'image_link',
+      'description',
+      'brand',
+      'price',
+      'rating',
+      'category',
+      'product_type',
       'featured',
-      [sequelize.literal('(SELECT AVG(rating) FROM rating WHERE product.id = rating.product_id)'), 'rating_avg']
+      [sequelize.literal('(SELECT Avg(rating) FROM rating WHERE rating.product_id = product.id)'), 'int_rating_avg']
     ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
-        include: {
-          model: User,
-          attributes: ['id', 'name', 'email']
-        }
-      },
-      {
-        model: Rating,
-        attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
-        include: {
-          model: User,
-          attributes: ['id', 'name', 'email']
-        }
-      },
-      {
-        model: Wishlist,
-        attributes: ['id', 'user_id', 'product_id','wish_list', 'date'],
-        include: {
-          model: User,
-          attributes: ['id', 'name', 'email']
-        }
-      }
-    ]
+    limit: 10,
+    offset: pageStart
   })
-    .then(dbProductData => {
-      if (!dbProductData) {
-        res.status(404).json({ message: 'No product found with this id' });
-        return;
-      }
+  .then(dbProductData => {
+    console.log(`\n+++++++++++++++++++++ Product Total: ${dbProductData.count} +++++++++++++++++++++++++++++\n`)
+    let products = dbProductData.rows.map(product => product.get({ plain: true }));
+    //send total number of pages for frontend pagination
+    products.page_total = Math.floor((dbProductData.count/10) +1);
+    console.log(`\n+++++++++++++++++++++ Page Total: ${products.page_total} +++++++++++++++++++++++++++++\n`)
 
-      const product = dbProductData.get({ plain: true });
-
-      res.render('single-product', {
-        product,
-        loggedIn: req.session.loggedIn
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+    res.render('homepage', {
+      products,
+      loggedIn: req.session.loggedIn
     });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
+
+  ////////login//////
+
+
 router.get('/login', (req, res) => {
+ 
   if (req.session.loggedIn) {
     res.redirect('/');
     return;

@@ -26,7 +26,6 @@ Rating.init(
     },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false
     },
     rating_commentary: {
       type: DataTypes.STRING,

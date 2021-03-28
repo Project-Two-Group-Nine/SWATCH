@@ -1,7 +1,53 @@
-<ol class="product-list">
-  {{#each products as |product|}}
-  <li>
-    {{> product-info product }}
-  </li>
-  {{/each}}
-</ol>
+{{> modal}}
+
+
+{{> second-nav}}
+
+
+<section class="section-tertiary">
+    <div class="container">
+
+        <div class="row">
+            <h3>All Products</h3>
+        </div>
+        
+
+        <div class="row all-products">
+
+            <div class="col col-md-7">
+                {{#each products as |product|}}
+                    {{#unless product.featured}}
+                            {{> product-info product}}
+                     {{/unless}}
+                {{/each}}
+            </div>
+
+            <div class="col col-md-5 col-sm-order-1">
+                {{#each products as |product|}}
+                    {{#if product.featured}}
+                        {{> product-info product}}
+                    {{/if}}
+                {{/each}}
+            </div>
+
+        </div>
+
+    </div>
+
+{{!-- replace data-pagetotal with page total from home-routes --}}
+<ul class="pagination" data-pagetotal="{{products.page_total}}">
+
+</ul>
+
+</section>
+
+
+{{#if loggedIn}}
+  
+    <script src="/javascript/add-wishlist.js"></script>
+    <script src="/javascript/show-modal.js"></script>
+    <script src="/javascript/add-featured.js"></script>
+{{/if}}
+
+<script src="/javascript/mobile-menu.js"></script>
+<script src="/javascript/paginate.js"></script>

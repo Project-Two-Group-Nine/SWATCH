@@ -1,21 +1,36 @@
-{{> product-info product}}
+{{#if products.length}}
 
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea name="comment"></textarea>
-  </div>
+<section class="section-secondary">
+  {{#each products as |product|}}
 
-  <div>
-    <button type="submit">add comment</button>
-    <button type="button" class="rate-btn">rate</button>
-  </div>
-</form>
-{{/if}}
+    {{> product-info product}}
 
-{{> comments product.comments}}
 
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
-<script src="/javascript/rate.js"></script>
+</section>
+
+<section>
+  {{#each ratings as |rating|}}
+    {{> rating-info rating}}
+  {{/each}}
+  {{/each}}
+</section>
+
+{{!-- <section class="section-tertiary all-products">
+
+
+            {{#each products as |product|}}
+              <article class='card review-card'>
+                {{> product-info product}}
+                {{#each ratings as |rating|}}
+                  {{> rating-info2 rating}}
+                {{/each}}
+              </article>
+            {{/each}}
+        
+
+</section> --}}
+
+
+<script src="/javascript/add-wishlist.js"></script>
+
 {{/if}}

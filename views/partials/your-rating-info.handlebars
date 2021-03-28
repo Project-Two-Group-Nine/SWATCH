@@ -1,0 +1,36 @@
+<div class="col">
+    <article class="card">
+        <div class="card-info">
+            <form class="create-review-form col col-sm-6">
+
+                <div class='show-review'>
+                    <h6>Your Rating: {{rating}}</h6>
+                    <h6>Your Review</h6>
+                    <p>{{rating_commentary}}</p>
+
+                </div>
+
+                <div class='edit-review' style="display: none;">
+
+                    <label for="rating">Your Rating </label>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <label for="review">Your Review</label>
+                    <textarea name="review">{{rating_commentary}}</textarea>
+
+                </div>
+
+                <button type="submit" class="button-info button-round form-button update-rating rate-btn"
+                    data-ratingid={{id}}>Update</button>
+                <button type="submit" class="button-info button-round form-button remove-rating rate-btn"
+                    data-ratingid={{id}}>Remove</button>
+            </form>
+        </div>
+    </article>
+</div>

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Product, Comment, Rating, Wishlist } = require('../../models');
+const { User, Product,  Rating, Wishlist } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -21,19 +21,11 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model: Comment,
-        attributes: ['id', 'user_id' ,'product_id', 'comment', 'date'],
-        include: {
-          model: Product,
-          attributes: ['id', 'name', 'api_id', 'featured', 'rating_avg']
-        }
-      },
-      {
         model: Rating,
         attributes: ['id', 'user_id', 'product_id','rating','rating_commentary' ,'date'],
         include: {
           model: Product,
-          attributes: ['id', 'name', 'api_id', 'featured', 'rating_avg']
+          attributes:  ['id', 'name', 'api_id','brand','price','rating','category','product_type','featured','int_rating_avg']
         }
       },
       {
@@ -41,7 +33,7 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'user_id', 'product_id','wish_list,', 'date'],
         include: {
           model: Product,
-          attributes: ['id', 'name', 'api_id', 'featured', 'rating_avg']
+          attributes: ['id', 'name', 'api_id','featured','int_rating_avg']
         }
       }
     ]
@@ -102,7 +94,7 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
+      req.session.username = dbUserData.name;
       req.session.loggedIn = true;
   
       res.json({ user: dbUserData, message: 'You are now logged in!' });

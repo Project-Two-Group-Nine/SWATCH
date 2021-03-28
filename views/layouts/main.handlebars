@@ -2,38 +2,92 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beauty Dream</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWATCH</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+
+    <!-- Normalize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+    {{!-- Icons --}}
+    <script src="https://kit.fontawesome.com/715d22d8c7.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">Beauty Dream</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
+    {{!-- Header --}}
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <img src="/images/swatch-logo.png" alt="Swatch" class="logo-image">
+                </a>
+            </div>
+            <ul class="nav-links">
+                {{#if loggedIn}}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/wishlist">Wishlist</a></li>
+                <li class="nav-input"><button id="logout" class="button-info button-round nav-button">logout</button></li>
+                {{else}}
+                <li><a href="/login">login</a></li>
+                {{/if}}
+            </ul>
+        <a class="mobile-menu-toggle"></a>
+        <ul class="mobile-menu menu" style="display: none;">
+            {{#if loggedIn}}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/wishlist">Wishlist</a></li>
+            <li><button id="logout" class="">logout</button></li>
+            {{else}}
+            <li><a href="/login">login</a></li>
+            {{/if}}
+        </ul>
+        </div>
+    </nav>
+    
     <main>
-      {{{ body }}}
+        {{{ body }}}
     </main>
+
+    <!-- Footer -->
     <footer>
-      Thanks for visiting!
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-6 col-lg-5">
+                    <div class="footer-text">
+                        <p class="h3">About Us</p>
+                        <ul class="footer-links">
+                            <p>Find us on <a href="https://github.com/Project-Two-Group-Nine/makeup-review-website/tree/develop">Github</a>!</p>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-sm-6 col-lg-5 col-lg-offset-1">
+                    <h4 class="footer-links-category">Our Team</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/SamMichBrown">Samantha Brown</a></li>
+                        <li><a href="https://github.com/bluesatyr">Shawn Evans</a></li>
+                        <li><a href="https://github.com/malek-benjemia">Malek Ben Jemia</a></li>
+                        <li><a href="https://github.com/zohamumtaz">Zoha Mumtaz</a></li>
+                        <li><a href="https://github.com/Amelia-was">Amelia Wasowski</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+        </div>
+    
     </footer>
-  </div>
-  
-  {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
-  {{/if}}
+
+    
 </body>
 
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
+    
+    
 </html>
+
+

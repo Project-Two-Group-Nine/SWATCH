@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Product, Comment, Rating, Wishlist} = require('../../models');
+const { User, Product, Rating, Wishlist} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
       },
       {
         model: Product,
-        attributes: ['id', 'name', 'api_id','featured','rating_avg']
+        attributes: ['id', 'name', 'api_id','brand','price','rating','category','product_type','featured','int_rating_avg']
       }
     ]
   })
@@ -51,7 +51,7 @@ router.get('/:id', (req, res) => {
       },
       {
         model: Product,
-        attributes: ['id', 'name', 'api_id','featured','rating_avg']
+        attributes: ['id', 'name', 'api_id','brand','price','rating','category','product_type','featured','int_rating_avg']
       }
     ]
   })
@@ -76,7 +76,7 @@ router.post('/', withAuth, (req, res) => {
     product_id: req.body.product_id,
     rating: req.body.rating,
     rating_commentary: req.body.rating_commentary,
-    date: today.getDate()
+    date: req.body.date
   })
     .then(dbRatingData => res.json(dbRatingData))
     .catch(err => {
@@ -86,10 +86,18 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  Rating.update(req.body, {
+  Rating.update(
+    {
+      rating : req.body.rating,
+      rating_commentary : req.body.rating_commentary,
+      date : req.body.date
+    },
+    {
     where: {
+      user_id: req.session.user_id,
       id: req.params.id
     }
+    
   })
     .then(dbRatingData => {
       if (!dbRatingData) {
@@ -107,6 +115,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
   Rating.destroy({
     where: {
+      user_id: req.session.user_id,
       id: req.params.id
     }
   })
