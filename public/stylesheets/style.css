@@ -1193,6 +1193,10 @@ b {
   text-transform: capitalize;
   margin-bottom: 5px;
 }
+.card-title .featured-title {
+  color: #ffffff;
+  font-size: larger;
+}
 
 .card-heading {
   display: flex;
@@ -1247,7 +1251,7 @@ footer .copyright {
 }
 .footer .copyright a,
 footer .copyright a {
-  color: #757575;
+  color: #eeeeee;
 }
 
 .footer-text p {
@@ -1269,7 +1273,7 @@ footer .copyright a {
   margin-top: 5px;
 }
 .footer-links a {
-  color: #757575;
+  color: #eeeeee;
 }
 
 header,
