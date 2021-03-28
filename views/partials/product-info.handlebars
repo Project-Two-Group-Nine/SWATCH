@@ -4,8 +4,16 @@
   {{!-- replace with product img url --}}
   <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
   <div class="card-actions">
-    <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
-    <button class="button-primary button-round show-modal" data-productid={{id}}>Review</button>
+    {{#if wished}}
+      <button class="button-primary button-round disabled">On Wishlist</button>
+    {{else}}
+      <button class="button-primary button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+    {{/if}}
+    {{#if rated}}
+      <button class="button-primary button-round disabled">Reviewed</button>
+    {{else}}
+      <button class="button-primary button-round show-modal" data-productid={{id}}>Review</button>
+    {{/if}}
   </div>
   <div class="card-info">
     <a href="/single-product/{{id}}">
@@ -38,8 +46,17 @@
     {{!-- replace with product img url --}}
     <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
     <div class="card-actions">
-      <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
-      <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
+      {{#if wished}}
+        <button class="button-info button-round disabled">On Wishlist</button>
+      {{else}}
+        <button class="button-info button-round add-wishlist" data-productid={{id}}>Wishlist</button>
+      {{/if}}
+
+      {{#if rated}}
+        <button class="button-info button-round disabled">Reviewed</button>
+      {{else}}
+        <button class="button-info button-round show-modal" data-productid={{id}}>Review</button>
+      {{/if}}
     </div>
   </div>
   <div class="card-info">
