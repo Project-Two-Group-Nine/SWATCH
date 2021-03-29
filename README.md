@@ -1,4 +1,4 @@
-# Swatch  &nbsp;&nbsp;&nbsp;[![MIT](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)](https://shields.io/)
+# SWATCH  &nbsp;&nbsp;&nbsp;[![MIT](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)](https://shields.io/)
 
 ## Description
 Swatch is a makeup review website. When logged in, users may rate and review makeup products, read other reviews by users, and add products to a personal wishlist. The website can be found [here](https://swatch-makeup-reviews.herokuapp.com/).
