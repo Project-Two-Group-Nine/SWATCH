@@ -1,35 +1,24 @@
-# Title: SWATCH</br>
+# Swatch  &nbsp;&nbsp;&nbsp;[![MIT](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)](https://shields.io/)
 
-## <span id="description">Description</span>
-This is a website that displays beauty products and allows to rate, comment and add them to a wishlist.
-<img src="./public/images/swatch-screenshot.png">
+## Description
+Swatch is a makeup review website. When logged in, users may rate and review makeup products, read other reviews by users, and add products to a personal wishlist. The website can be found [here](https://swatch-makeup-reviews.herokuapp.com/).
+![Swatch Website](./public/images/swatch-screenshot.png)
 
-## <span id="content">Table of Contents</span>
-<a href="#description">Description</a></br>
-<a href="#content">Table of Contents</a></br>
-<a href="#installation">Installation</a></br>
-<a href="#usage">Usage</a></br>
-<a href="#license">License</a></br>
-<a href="#contribution">Contributing</a></br>
-<a href="#tests">Tests</a></br>
-<a href="#questions">Questions</a></br>
+## Table of Contents
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [License](#license)
+4. [Questions](#questions)
 
-## <span id="installation">Installation</span>
-npm install express sequelize mysql2 express-handlebars dotenv bcrypt connect-session-sequelize express-session handlebars-paginate express-handlebars-paginate
-npm i node-fetch --save
-Please don't forget to properly set the gitignore file.
+## Installation
+Clone the repository above or download it as a .zip file. In the root directory of the application enter the following in the command line: `npm i`. You must have MySQL installed to use the database.
 
-## <span id="usage">Usage</span>
-Use it to view products, rate, comment and add to your wishlist. The database can be reset by using mysql -u root -p  source db/schema.sql. The tables can be reset by using the commands "npm run seeds". In the command line (bash) enter npm start, then go to <a href="https://swatch-makeup-reviews.herokuapp.com/">Heroku</a>.
+## Usage
+To run the databse locally, run the following in the command line: `mysql -u root -p` and
+`source db/schema.sql` in the MySQL CLI. Enter `quit` to exit the MySQL CLI. In the command line, enter `npm run seeds` to seed the database. Then enter `npm start` to manage the database locally.
 
-## <span id="license">License</span>
-This application is covered under no licence.
+## License
+Under the MIT license, this material is free to modify and distribute for commercial or private use. See [here](https://opensource.org/licenses/MIT) for more details.
 
-## <span id="contribution">Contributing</span>
-Please feel free to contribute as you see fit.
-
-## <span id="tests">Tests</span>
-Please use <a href="">Heroku</a>.
-
-## <span id="questions">Questions</span>
-View Project on <a href="https://github.com/Project-Two-Group-Nine/makeup-review-website.git">GitHub</a><br>
+## Questions
+For additional questions, contact us on [Github](https://github.com/Project-Two-Group-Nine/makeup-review-website.git).
