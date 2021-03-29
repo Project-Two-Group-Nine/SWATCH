@@ -1145,9 +1145,45 @@ b {
 
 .review-card {
   padding: 0;
+  display: flex;
 }
 .review-card .show-modal {
   display: none;
+}
+.review-card .card {
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .review-card .card {
+    max-width: 50%;
+  }
+}
+.review-card .card:last-child {
+  padding-top: 0;
+}
+.review-card form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .review-card form > div {
+    align-items: flex-start;
+  }
+}
+.review-card .form-card-actions {
+  display: flex;
+  flex-direction: row;
+}
+@media (min-width: 768px) {
+  .review-card .form-card-actions {
+    align-items: flex-start;
+    max-width: max-content;
+  }
+}
+.review-card .form-card-actions button {
+  margin: 10px 5px;
 }
 
 .card-vertical {
@@ -1210,6 +1246,7 @@ b {
 .card-heading {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
 }
 .card-heading h3 {
