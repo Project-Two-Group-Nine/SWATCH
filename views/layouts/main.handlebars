@@ -30,24 +30,25 @@
                 {{#if loggedIn}}
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/wishlist">Wishlist</a></li>
-                <li class="nav-input"><button id="logout" class="button-info button-round nav-button">logout</button></li>
+                <li class="nav-input"><button id="logout" class="button-info button-round nav-button">logout</button>
+                </li>
                 {{else}}
                 <li><a href="/login">login</a></li>
                 {{/if}}
             </ul>
-        <a class="mobile-menu-toggle"></a>
-        <ul class="mobile-menu menu" style="display: none;">
-            {{#if loggedIn}}
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/wishlist">Wishlist</a></li>
-            <li><button id="logout" class="">logout</button></li>
-            {{else}}
-            <li><a href="/login">login</a></li>
-            {{/if}}
-        </ul>
+            <a class="mobile-menu-toggle"></a>
+            <ul class="mobile-menu menu" style="display: none;">
+                {{#if loggedIn}}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/wishlist">Wishlist</a></li>
+                <li><button id="logout" class="">logout</button></li>
+                {{else}}
+                <li><a href="/login">login</a></li>
+                {{/if}}
+            </ul>
         </div>
     </nav>
-    
+
     <main>
         {{{ body }}}
     </main>
@@ -59,9 +60,9 @@
                 <div class="col col-sm-6 col-lg-5">
                     <div class="footer-text">
                         <p class="h3">About Us</p>
-                        <ul class="footer-links">
-                            <p>Find us on <a href="https://github.com/Project-Two-Group-Nine/makeup-review-website/tree/develop">Github</a>!</p>
-                        </ul>
+                        <p>We are a group of coding bootcampers and aspiring web developers. Find us on <a
+                                href="https://github.com/Project-Two-Group-Nine/makeup-review-website/tree/develop">Github</a>!
+                        </p>
                     </div>
                 </div>
                 <div class="col col-sm-6 col-lg-5 col-lg-offset-1">
@@ -74,20 +75,18 @@
                         <li><a href="https://github.com/Amelia-was">Amelia Wasowski</a></li>
                     </ul>
                 </div>
-    
+
             </div>
         </div>
-    
+
     </footer>
 
-    
+
 </body>
 
-    {{#if loggedIn}}
-    <script src="/javascript/logout.js"></script>
-    {{/if}}
-    
-    
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
+
+
 </html>
-
-

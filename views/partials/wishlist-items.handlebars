@@ -4,9 +4,14 @@
     <a href="/single-product/{{id}}">
         <h2 class="card-title">{{name}}</h2>
     </a>
-    <img class="card-image" onError="this.onerror=null; this.src='/images/default-image.png'" src={{image_link}} />
-    <p>{{{description}}}</p>
-    <button class="button-info button-round remove-wishlist" id={{id}}>Remove</button>
+    <img class="card-image" onError="this.onerror=null; this.src='/images/default-img.png'" src={{image_link}} />
+    <div class="card-text">
+        <p>{{{description}}}</p>
+    </div>
+
+    <div class="card-actions">
+        <button class="button-info button-round remove-wishlist" id={{id}}>Remove</button>
+    </div>
 </article>
 
 </div>

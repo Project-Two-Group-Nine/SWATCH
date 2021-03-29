@@ -28,7 +28,6 @@ router.get('/', withAuth, (req, res) => {
       'rating',
       'category',
       'product_type',
-      'featured',
       [sequelize.literal('(SELECT AVG(Rating) FROM rating WHERE product.id = rating.product_id)'), 'int_rating_avg'],
       [sequelize.literal(`(Select case when ${req.session.user_id} in (select rating.user_id from rating where product.id = rating.product_id) then 1 else 0 end  )`), 'rated'],
       [sequelize.literal(`(Select case when ${req.session.user_id} in (select wishlist.user_id from wishlist where product.id = wishlist.product_id) then 1 else 0 end  )`), 'wished']

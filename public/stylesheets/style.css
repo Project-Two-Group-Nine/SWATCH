@@ -682,6 +682,22 @@ section :last-child {
   background: #ffffff;
 }
 
+.section-bg {
+  object-fit: cover;
+  filter: blur(8px);
+  height: 100%;
+  position: fixed;
+  z-index: -999;
+}
+@media (min-width: 768px) {
+  .section-bg {
+    position: absolute;
+    max-width: 100%;
+    height: auto;
+    min-width: 1200px;
+  }
+}
+
 .button,
 button,
 input[type=button],
@@ -1186,6 +1202,10 @@ b {
   text-transform: capitalize;
   margin-bottom: 5px;
 }
+.card-title .featured-title {
+  color: #ffffff;
+  font-size: larger;
+}
 
 .card-heading {
   display: flex;
@@ -1240,11 +1260,15 @@ footer .copyright {
 }
 .footer .copyright a,
 footer .copyright a {
-  color: #e0e0e0;
+  color: #eeeeee;
 }
 
 .footer-text p {
   color: #ffffff;
+}
+.footer-text a {
+  color: #eeeeee;
+  font-weight: bold;
 }
 
 .footer-links-category {
@@ -1262,7 +1286,7 @@ footer .copyright a {
   margin-top: 5px;
 }
 .footer-links a {
-  color: #e0e0e0;
+  color: #eeeeee;
 }
 
 header,
