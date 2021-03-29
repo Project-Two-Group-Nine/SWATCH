@@ -1,4 +1,4 @@
-# Title: Beauty Dream</br>
+# Title: SWATCH</br>
 
 ## <span id="description">Description</span>
 This is a website that displays beauty products and allows to rate, comment and add them to a wishlist.
